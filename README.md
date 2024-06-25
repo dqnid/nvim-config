@@ -10,9 +10,11 @@ Refer to the [documentation](https://lazyvim.github.io/installation) to get star
 
 ## TODO
 
-- bufferline: 
+- bufferline:
   - close icon on hover
   - name format
+- nvim-lint:
+  - check if necessary to specify linter by lang
 
 ## TO-CHECK
 

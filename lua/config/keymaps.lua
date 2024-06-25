@@ -53,6 +53,14 @@ map("n", "<leader>gL", function()
     LazyVim.lazygit({ args = { "log" } })
 end, { desc = "Lazygit Log (cwd)" })
 
+-- Neotree
+map("n", "<C-n>", "<cmd>Neotree toggle<cr>", { desc = "Toggle Neotree open" })
+map("n", "<leader>e", "<cmd>Neotree focus<cr>", { desc = "Focus neotree" })
+
+-- TS lsp
+map("n", "<leader>to", "TypescriptOrganizeImports", { desc = "Organize Imports" })
+map("n", "<leader>tr", "TypescriptRenameFile", { desc = "Rename File" })
+
 -----------------------------------------------------------
 -- Example
 -----------------------------------------------------------
