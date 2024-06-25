@@ -1,3 +1,5 @@
+-- UNUSED BUT KEPT AS AN EXAMPLE
+
 local M = {}
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()

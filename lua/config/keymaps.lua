@@ -57,9 +57,82 @@ end, { desc = "Lazygit Log (cwd)" })
 map("n", "<C-n>", "<cmd>Neotree toggle<cr>", { desc = "Toggle Neotree open" })
 map("n", "<leader>e", "<cmd>Neotree focus<cr>", { desc = "Focus neotree" })
 
+-- LSP
+map("n", "gD", function()
+    vim.lsp.buf.declaration()
+end, { desc = "LSP declaration" })
+map("n", "gd", function()
+    vim.lsp.buf.definition()
+end, { desc = "LSP definition" })
+map("n", "gr", function()
+    vim.lsp.buf.references()
+end, { desc = "LSP references" })
+map("n", "K", function()
+    vim.lsp.buf.hover()
+end, { desc = "LSP hover" })
+map("n", "gi", function()
+    vim.lsp.buf.implementation()
+end, { desc = "LSP implementation" })
+map("n", "<leader>ls", function()
+    vim.lsp.buf.signature_help()
+end, { desc = "LSP signature help" })
+map("n", "<leader>lf", function()
+    vim.diagnostic.open_float({ border = "rounded" })
+end, { desc = "Floating diagnostics" })
+map("n", "<leader>D", function()
+    vim.lsp.buf.type_definition()
+end, { desc = "LSP type definition" })
+map("n", "<leader>ca", function()
+    vim.lsp.buf.code_action()
+end, { desc = "LSP code actions" })
+map("n", "[d", function()
+    vim.diagnostic.goto_prev({ float = { border = "rounded" } })
+end, { desc = "Goto prev diagnostic" })
+map("n", "]d", function()
+    vim.diagnostic.goto_next({ float = { border = "rounded" } })
+end, { desc = "Goto next diagnostic" })
+map("n", "<leader>q", function()
+    vim.diagnostic.setloclist()
+end, { desc = "Diagnostic setloclist" })
+map("v", "<leader>ca", function()
+    vim.lsp.buf.code_action()
+end, { desc = "LSP code action" })
+
+map("n", "<leader>wa", function()
+    vim.lsp.buf.add_workspace_folder()
+end, { desc = "Add workspace folder" })
+map("n", "<leader>wr", function()
+    vim.lsp.buf.remove_workspace_folder()
+end, { desc = "Remove workspace folder" })
+map("n", "<leader>wl", function()
+    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+end, { desc = "List workspace folders" })
+
 -- TS lsp
 map("n", "<leader>to", "TypescriptOrganizeImports", { desc = "Organize Imports" })
 map("n", "<leader>tr", "TypescriptRenameFile", { desc = "Rename File" })
+
+-- Telescope
+map("n", "<leader>ff", "<cmd> Telescope find_files <CR>", { desc = "Find files" })
+map("n", "<leader>fa", "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", { desc = "Find all" })
+map("n", "<leader>fw", "<cmd> Telescope live_grep <CR>", { desc = "Live grep" })
+map("n", "<leader>fb", "<cmd> Telescope buffers <CR>", { desc = "Find buffers" })
+map("n", "<leader>fh", "<cmd> Telescope help_tags <CR>", { desc = "Help page" })
+map("n", "<leader>fo", "<cmd> Telescope oldfiles <CR>", { desc = "Fild old files" })
+map("n", "<leader>fz", "<cmd> Telescope current_buffer_fuzzy_find <CR>", { desc = "Find in current buffer" })
+
+map("n", "<leader>gc", "<cmd> Telescope git_commits <CR>", { desc = "Git commits" })
+map("n", "<leader>gs", "<cmd> Telescope git_status <CR>", { desc = "Git status" })
+
+-- Comment
+map(
+    "n",
+    "<leader>/",
+    "<cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
+    { desc = "Toggle comment current" }
+)
+
+-- Terminal
 
 -----------------------------------------------------------
 -- Example
