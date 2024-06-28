@@ -1,7 +1,4 @@
 -- This file is automatically loaded by lazyvim.config.init
-
--- DO NOT USE `LazyVim.safe_keymap_set` IN YOUR OWN CONFIG!!
--- use `vim.keymap.set` instead
 local map = vim.keymap.set
 
 -- Bufferline
@@ -10,8 +7,6 @@ map("n", "<leader>bpx", "<CMD>BufferLinePickClose<CR>")
 map("n", "<leader>box", "<CMD>BufferLineCloseOthers<CR>")
 map("n", "<Tab>", "<CMD>BufferLineCycleNext<CR>")
 map("n", "<S-Tab>", "<CMD>BufferLineCyclePrev<CR>")
-map("n", "]b", "<CMD>BufferLineMoveNext<CR>")
-map("n", "[b", "<CMD>BufferLineMovePrev<CR>")
 map("n", "bsd", "<CMD>BufferLineSortByDirectory<CR>")
 map("n", "bse", "<CMD>BufferLineSortByExtension<CR>")
 map("n", "bsr", "<CMD>BufferLineSortByRelativeDirectory<CR>")
@@ -31,6 +26,9 @@ map("n", "<leader>gd", "<CMD>Gitsigns diffthis<CR>")
 map("n", "K", "<CMD>Gitsigns blame_line<CR>")
 map("n", "<leader>gtb", "<CMD>Gitsigns toggle_current_line_blame<CR>")
 map("n", "<leader>gtd", "<CMD>Gitsigns toggle_deleted")
+map("n", "<leader>gc", "<cmd> Telescope git_commits <CR>", { desc = "Git commits" })
+map("n", "<leader>gs", "<cmd> Telescope git_status <CR>", { desc = "Git status" })
+
 -- lazygit
 map("n", "<leader>gg", function()
     LazyVim.lazygit({ cwd = LazyVim.root.git() })
@@ -91,9 +89,6 @@ end, { desc = "Goto prev diagnostic" })
 map("n", "]d", function()
     vim.diagnostic.goto_next({ float = { border = "rounded" } })
 end, { desc = "Goto next diagnostic" })
-map("n", "<leader>q", function()
-    vim.diagnostic.setloclist()
-end, { desc = "Diagnostic setloclist" })
 map("v", "<leader>ca", function()
     vim.lsp.buf.code_action()
 end, { desc = "LSP code action" })
@@ -112,7 +107,7 @@ end, { desc = "List workspace folders" })
 map("n", "<leader>to", "TypescriptOrganizeImports", { desc = "Organize Imports" })
 map("n", "<leader>tr", "TypescriptRenameFile", { desc = "Rename File" })
 
--- Telescope
+-- Telescope find
 map("n", "<leader>ff", "<cmd> Telescope find_files <CR>", { desc = "Find files" })
 map("n", "<leader>fa", "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", { desc = "Find all" })
 map("n", "<leader>fw", "<cmd> Telescope live_grep <CR>", { desc = "Live grep" })
@@ -121,9 +116,6 @@ map("n", "<leader>fh", "<cmd> Telescope help_tags <CR>", { desc = "Help page" })
 map("n", "<leader>fo", "<cmd> Telescope oldfiles <CR>", { desc = "Fild old files" })
 map("n", "<leader>fz", "<cmd> Telescope current_buffer_fuzzy_find <CR>", { desc = "Find in current buffer" })
 
-map("n", "<leader>gc", "<cmd> Telescope git_commits <CR>", { desc = "Git commits" })
-map("n", "<leader>gs", "<cmd> Telescope git_status <CR>", { desc = "Git status" })
-
 -- Comment
 map(
     "n",
@@ -131,6 +123,21 @@ map(
     "<cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
     { desc = "Toggle comment current" }
 )
+
+-- IA codium
+map("n", "<leader>ct", "<cmd> CodeiumToggle <CR>", { desc = "Toggle codeium IA assistance" })
+map("i", "<C-g>", function()
+    return vim.fn["codeium#Accept"]()
+end, { expr = true, silent = true })
+map("i", "<c-;>", function()
+    return vim.fn["codeium#CycleCompletions"](1)
+end, { expr = true, silent = true })
+map("i", "<c-,>", function()
+    return vim.fn["codeium#CycleCompletions"](-1)
+end, { expr = true, silent = true })
+map("i", "<c-x>", function()
+    return vim.fn["codeium#Clear"]()
+end, { expr = true, silent = true })
 
 -- Terminal
 
@@ -192,19 +199,13 @@ map("i", ";", ";<c-g>u")
 -- save file
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 
---keywordprg
-map("n", "<leader>K", "<cmd>norm! K<cr>", { desc = "Keywordprg" })
-
 -- better indenting
 map("v", "<", "<gv")
 map("v", ">", ">gv")
 
 -- commenting
-map("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Below" })
-map("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Above" })
-
--- lazy
-map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
+-- map("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Below" })
+-- map("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Above" })
 
 -- new file
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
@@ -217,7 +218,7 @@ map("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })
 
 -- formatting
 map({ "n", "v" }, "<leader>cf", function()
-    LazyVim.format({ force = true })
+    require("conform").format({ bufnr = args.buf })
 end, { desc = "Format" })
 
 -- diagnostic
@@ -236,23 +237,47 @@ map("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
 map("n", "]w", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
 map("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
 
--- stylua: ignore start
-
 -- toggle options
-map("n", "<leader>uf", function() LazyVim.format.toggle() end, { desc = "Toggle Auto Format (Global)" })
-map("n", "<leader>uF", function() LazyVim.format.toggle(true) end, { desc = "Toggle Auto Format (Buffer)" })
-map("n", "<leader>us", function() LazyVim.toggle("spell") end, { desc = "Toggle Spelling" })
-map("n", "<leader>uw", function() LazyVim.toggle("wrap") end, { desc = "Toggle Word Wrap" })
-map("n", "<leader>uL", function() LazyVim.toggle("relativenumber") end, { desc = "Toggle Relative Line Numbers" })
-map("n", "<leader>ul", function() LazyVim.toggle.number() end, { desc = "Toggle Line Numbers" })
-map("n", "<leader>ud", function() LazyVim.toggle.diagnostics() end, { desc = "Toggle Diagnostics" })
+map("n", "<leader>uf", function()
+    LazyVim.format.toggle()
+end, { desc = "Toggle Auto Format (Global)" })
+map("n", "<leader>uF", function()
+    LazyVim.format.toggle(true)
+end, { desc = "Toggle Auto Format (Buffer)" })
+map("n", "<leader>us", function()
+    LazyVim.toggle("spell")
+end, { desc = "Toggle Spelling" })
+map("n", "<leader>uw", function()
+    LazyVim.toggle("wrap")
+end, { desc = "Toggle Word Wrap" })
+map("n", "<leader>uL", function()
+    LazyVim.toggle("relativenumber")
+end, { desc = "Toggle Relative Line Numbers" })
+map("n", "<leader>ul", function()
+    LazyVim.toggle.number()
+end, { desc = "Toggle Line Numbers" })
+map("n", "<leader>ud", function()
+    LazyVim.toggle.diagnostics()
+end, { desc = "Toggle Diagnostics" })
 local conceallevel = vim.o.conceallevel > 0 and vim.o.conceallevel or 3
-map("n", "<leader>uc", function() LazyVim.toggle("conceallevel", false, {0, conceallevel}) end, { desc = "Toggle Conceal" })
+map("n", "<leader>uc", function()
+    LazyVim.toggle("conceallevel", false, { 0, conceallevel })
+end, { desc = "Toggle Conceal" })
 if vim.lsp.buf.inlay_hint or vim.lsp.inlay_hint then
-  map( "n", "<leader>uh", function() LazyVim.toggle.inlay_hints() end, { desc = "Toggle Inlay Hints" })
+    map("n", "<leader>uh", function()
+        LazyVim.toggle.inlay_hints()
+    end, { desc = "Toggle Inlay Hints" })
 end
-map("n", "<leader>uT", function() if vim.b.ts_highlight then vim.treesitter.stop() else vim.treesitter.start() end end, { desc = "Toggle Treesitter Highlight" })
-map("n", "<leader>ub", function() LazyVim.toggle("background", false, {"light", "dark"}) end, { desc = "Toggle Background" })
+map("n", "<leader>uT", function()
+    if vim.b.ts_highlight then
+        vim.treesitter.stop()
+    else
+        vim.treesitter.start()
+    end
+end, { desc = "Toggle Treesitter Highlight" })
+map("n", "<leader>ub", function()
+    LazyVim.toggle("background", false, { "light", "dark" })
+end, { desc = "Toggle Background" })
 
 -- quit
 map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
@@ -262,12 +287,18 @@ map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
 map("n", "<leader>uI", "<cmd>InspectTree<cr>", { desc = "Inspect Tree" })
 
 -- LazyVim Changelog
-map("n", "<leader>L", function() LazyVim.news.changelog() end, { desc = "LazyVim Changelog" })
+map("n", "<leader>L", function()
+    LazyVim.news.changelog()
+end, { desc = "LazyVim Changelog" })
 
 -- floating terminal
-local lazyterm = function() LazyVim.terminal(nil, { cwd = LazyVim.root() }) end
+local lazyterm = function()
+    LazyVim.terminal(nil, { cwd = LazyVim.root() })
+end
 map("n", "<leader>ft", lazyterm, { desc = "Terminal (Root Dir)" })
-map("n", "<leader>fT", function() LazyVim.terminal() end, { desc = "Terminal (cwd)" })
+map("n", "<leader>fT", function()
+    LazyVim.terminal()
+end, { desc = "Terminal (cwd)" })
 map("n", "<c-/>", lazyterm, { desc = "Terminal (Root Dir)" })
 map("n", "<c-_>", lazyterm, { desc = "which_key_ignore" })
 
@@ -287,7 +318,9 @@ map("n", "<leader>w-", "<C-W>s", { desc = "Split Window Below", remap = true })
 map("n", "<leader>w|", "<C-W>v", { desc = "Split Window Right", remap = true })
 map("n", "<leader>-", "<C-W>s", { desc = "Split Window Below", remap = true })
 map("n", "<leader>|", "<C-W>v", { desc = "Split Window Right", remap = true })
-map("n", "<leader>wm", function() LazyVim.toggle.maximize() end, { desc = "Maximize Toggle" })
+map("n", "<leader>wm", function()
+    LazyVim.toggle.maximize()
+end, { desc = "Maximize Toggle" })
 
 -- tabs
 map("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Last Tab" })

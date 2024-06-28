@@ -20,9 +20,57 @@ Refer to the [documentation](https://lazyvim.github.io/installation) to get star
 
 - indent-blankline: changes not being applied (if not success remove)
 
+## General mappings
+
+### leader
+
+#### g
+
+`g` stands for go-to or git.
+
+- `g`
+
+
+#### b
+
+b stands for buffer
+
+- `bpx`: pick one to close
+- `box`: close all but current
+
+#### w
+
+w stands for workspace
+
+- `<leader>wa` : Add workspace folder
+- `<leader>wr` : remove workspace folder
+- `<leader>wl` : list workspace folders
+
+#### t
+
+`t` stands for terminal
+
+#### ctrl
+
+move focus
+
+#### shift
+
+move content
+
+#### alt
+
+move content
+
+#### `][`
+
+Move whatever
+
+- `]b` : go to next buffer
+- `[b` : go to prev buffer
+
+
 ## Obscure Mappings
 
 - `s` : flash find.
 - `S` : flash find based on `treesitter`.
-
-

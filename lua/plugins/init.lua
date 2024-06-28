@@ -234,6 +234,10 @@ return {
             { "<leader>glg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
         },
     },
+    {
+        "sindrets/diffview.nvim",
+        lazy = false,
+    },
 
     -- File tree
     {
@@ -346,4 +350,37 @@ return {
             require("Comment").setup(opts)
         end,
     },
+
+    -- Markdown preview
+    {
+        "toppair/peek.nvim",
+        event = { "VeryLazy" },
+        build = "deno task --quiet build:fast",
+        config = function()
+            require("peek").setup({
+                auto_load = true,
+                close_on_bdelete = true, -- close preview window on buffer delete
+
+                theme = "dark", -- 'dark' or 'light'
+
+                update_on_change = true,
+
+                app = { "chromium", "--new-window" },
+
+                filetype = { "markdown" },
+
+                -- relevant if update_on_change is true
+                throttle_at = 200000, -- start throttling when file exceeds this
+                -- amount of bytes in size
+                throttle_time = "auto",
+            })
+            vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
+            vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
+            vim.api.nvim_create_user_command("MarkdownPreviewOpen", require("peek").open, {})
+            vim.api.nvim_create_user_command("MarkdownPreviewClose", require("peek").close, {})
+        end,
+    },
+
+    -- IA with codium
+    "Exafunction/codeium.vim",
 }
