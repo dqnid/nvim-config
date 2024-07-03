@@ -6,3 +6,4 @@ vim.cmd("set wrapmargin=0")
 vim.cmd("set wrap")
 vim.cmd("set linebreak")
 vim.cmd("set colorcolumn=85")
+vim.cmd("set conceallevel=0") -- DONT hide characters in MD

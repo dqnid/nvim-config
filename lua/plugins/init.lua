@@ -60,11 +60,17 @@ return {
     -- treesitter, mason and typescript.nvim. So instead of the above, you can use:
     { import = "lazyvim.plugins.extras.lang.typescript" },
 
-    -- add more treesitter parsers
     {
         "nvim-treesitter/nvim-treesitter",
         opts = function()
             return require("plugins.opts.treesitter")
+        end,
+    },
+
+    {
+        "nvim-treesitter/nvim-treesitter-context",
+        opts = function()
+            return require("plugins.opts.treesitterContext")
         end,
     },
 
@@ -325,7 +331,6 @@ return {
             return require("plugins.opts.telescope")
         end,
         config = function(_, opts)
-            dofile(vim.g.base46_cache .. "telescope")
             local telescope = require("telescope")
             telescope.setup(opts)
 
@@ -380,6 +385,8 @@ return {
             vim.api.nvim_create_user_command("MarkdownPreviewClose", require("peek").close, {})
         end,
     },
+
+    -- Keep context on top of page
 
     -- IA with codium
     "Exafunction/codeium.vim",

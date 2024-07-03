@@ -26,8 +26,11 @@ map("n", "<leader>gd", "<CMD>Gitsigns diffthis<CR>")
 map("n", "K", "<CMD>Gitsigns blame_line<CR>")
 map("n", "<leader>gtb", "<CMD>Gitsigns toggle_current_line_blame<CR>")
 map("n", "<leader>gtd", "<CMD>Gitsigns toggle_deleted")
-map("n", "<leader>gc", "<cmd> Telescope git_commits <CR>", { desc = "Git commits" })
-map("n", "<leader>gs", "<cmd> Telescope git_status <CR>", { desc = "Git status" })
+map("n", "<leader>gc", "<cmd>Telescope git_commits <CR>", { desc = "Git commits" })
+map("n", "<leader>gs", "<cmd>Telescope git_status <CR>", { desc = "Git status" })
+
+-- Treesitter context
+map("n", "<leader>tc", "<cmd>TSContextToggle<CR>", { desc = "Toggle treesitter context" })
 
 -- lazygit
 map("n", "<leader>gg", function()
