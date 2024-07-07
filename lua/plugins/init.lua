@@ -26,6 +26,21 @@ return {
 
     { import = "lazyvim.plugins.extras.lang.json" },
 
+    -- add tsserver and setup with typescript.nvim instead of lspconfig
+    {
+        "neovim/nvim-lspconfig",
+        lazy = false,
+        dependencies = {
+            "jose-elias-alvarez/typescript.nvim",
+        },
+        opts = function()
+            return require("plugins.opts.lspconfig")
+        end,
+        config = function()
+          require("plugins.configs.lspconfig")
+        end,
+    },
+
     -- lsp stuff
     {
         "williamboman/mason.nvim",
@@ -42,17 +57,6 @@ return {
             end, {})
 
             vim.g.mason_binaries_list = opts.ensure_installed
-        end,
-    },
-
-    -- add tsserver and setup with typescript.nvim instead of lspconfig
-    {
-        "neovim/nvim-lspconfig",
-        dependencies = {
-            "jose-elias-alvarez/typescript.nvim",
-        },
-        opts = function()
-            return require("plugins.opts.lspconfig")
         end,
     },
 
@@ -386,7 +390,56 @@ return {
         end,
     },
 
-    -- Keep context on top of page
+    {
+      "rmagatti/session-lens",
+      requires = { "rmagatti/auto-session", "nvim-telescope/telescope.nvim" },
+      config = function()
+        require("session-lens").setup({
+          prompt_title = "LAST SESSIONS",
+          path_display = { "shorten" },
+          theme = "ivy", -- default is dropdown
+          theme_conf = { border = false },
+          previewer = true,
+        })
+      end,
+      lazy = false,
+    },
+    {
+      "pmizio/typescript-tools.nvim",
+      dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+      opts = {},
+      config = function()
+        require("typescript-tools").setup({
+          settings = {
+            tsserver_plugins = {
+              -- for TypeScript v4.9+
+              "@styled/typescript-styled-plugin",
+              -- or for older TypeScript versions
+              -- "typescript-styled-plugin",
+            },
+          },
+        })
+      end,
+    },
+    {
+      "kylechui/nvim-surround",
+      version = "*",
+      event = "VeryLazy",
+      config = function()
+        require("nvim-surround").setup({})
+      end,
+    },
+    {
+
+      "rmagatti/auto-session",
+      config = function()
+        require("auto-session").setup({
+          log_level = "error",
+          auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
+        })
+      end,
+      lazy = false,
+    },
 
     -- IA with codium
     "Exafunction/codeium.vim",
