@@ -32,6 +32,9 @@ map("n", "<leader>gs", "<cmd>Telescope git_status <CR>", { desc = "Git status" }
 -- Treesitter context
 map("n", "<leader>tc", "<cmd>TSContextToggle<CR>", { desc = "Toggle treesitter context" })
 
+-- Blueprints
+map("n", "<leader>ct", "<cmd>lua require('blueprints').createFromTemplateTelescope()<CR>", { desc = "Nvim blueprints" })
+
 -- lazygit
 map("n", "<leader>gg", function()
     LazyVim.lazygit({ cwd = LazyVim.root.git() })
@@ -128,7 +131,7 @@ map(
 )
 
 -- IA codium
-map("n", "<leader>ct", "<cmd> CodeiumToggle <CR>", { desc = "Toggle codeium IA assistance" })
+map("n", "<leader>ca", "<cmd> CodeiumToggle <CR>", { desc = "Toggle codeium IA assistance" })
 map("i", "<C-g>", function()
     return vim.fn["codeium#Accept"]()
 end, { expr = true, silent = true })

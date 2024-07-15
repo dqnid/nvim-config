@@ -25,7 +25,13 @@ return {
     { import = "lazyvim.plugins.extras.ui.mini-starter" },
 
     { import = "lazyvim.plugins.extras.lang.json" },
-
+    {
+        "dqnid/nvim-blueprints",
+        name = "blueprints",
+        init = function()
+            require("blueprints").setup({ blueprintsDir = "/home/danih/.config/nvim/blueprints" })
+        end,
+    },
     -- add tsserver and setup with typescript.nvim instead of lspconfig
     {
         "neovim/nvim-lspconfig",
@@ -37,7 +43,7 @@ return {
             return require("plugins.opts.lspconfig")
         end,
         config = function()
-          require("plugins.configs.lspconfig")
+            require("plugins.configs.lspconfig")
         end,
     },
 
@@ -278,13 +284,6 @@ return {
                 end,
             },
         },
-        config = function()
-            -- Define diagnostic icons
-            vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticSignError" })
-            vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSignWarn" })
-            vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticSignInfo" })
-            vim.fn.sign_define("DiagnosticSignHint", { text = "󰌵", texthl = "DiagnosticSignHint" })
-        end,
         opts = function()
             return require("plugins.opts.neotree")
         end,
@@ -391,54 +390,54 @@ return {
     },
 
     {
-      "rmagatti/session-lens",
-      requires = { "rmagatti/auto-session", "nvim-telescope/telescope.nvim" },
-      config = function()
-        require("session-lens").setup({
-          prompt_title = "LAST SESSIONS",
-          path_display = { "shorten" },
-          theme = "ivy", -- default is dropdown
-          theme_conf = { border = false },
-          previewer = true,
-        })
-      end,
-      lazy = false,
+        "rmagatti/session-lens",
+        requires = { "rmagatti/auto-session", "nvim-telescope/telescope.nvim" },
+        config = function()
+            require("session-lens").setup({
+                prompt_title = "LAST SESSIONS",
+                path_display = { "shorten" },
+                theme = "ivy", -- default is dropdown
+                theme_conf = { border = false },
+                previewer = true,
+            })
+        end,
+        lazy = false,
     },
     {
-      "pmizio/typescript-tools.nvim",
-      dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-      opts = {},
-      config = function()
-        require("typescript-tools").setup({
-          settings = {
-            tsserver_plugins = {
-              -- for TypeScript v4.9+
-              "@styled/typescript-styled-plugin",
-              -- or for older TypeScript versions
-              -- "typescript-styled-plugin",
-            },
-          },
-        })
-      end,
+        "pmizio/typescript-tools.nvim",
+        dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+        opts = {},
+        config = function()
+            require("typescript-tools").setup({
+                settings = {
+                    tsserver_plugins = {
+                        -- for TypeScript v4.9+
+                        "@styled/typescript-styled-plugin",
+                        -- or for older TypeScript versions
+                        -- "typescript-styled-plugin",
+                    },
+                },
+            })
+        end,
     },
     {
-      "kylechui/nvim-surround",
-      version = "*",
-      event = "VeryLazy",
-      config = function()
-        require("nvim-surround").setup({})
-      end,
+        "kylechui/nvim-surround",
+        version = "*",
+        event = "VeryLazy",
+        config = function()
+            require("nvim-surround").setup({})
+        end,
     },
     {
 
-      "rmagatti/auto-session",
-      config = function()
-        require("auto-session").setup({
-          log_level = "error",
-          auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
-        })
-      end,
-      lazy = false,
+        "rmagatti/auto-session",
+        config = function()
+            require("auto-session").setup({
+                log_level = "error",
+                auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
+            })
+        end,
+        lazy = false,
     },
 
     -- IA with codium

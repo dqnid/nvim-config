@@ -6,6 +6,7 @@ local config = {
     open_files_do_not_replace_types = { "terminal", "trouble", "qf" }, -- when opening files, do not use windows containing these filetypes or buftypes
     sort_case_insensitive = false, -- used when sorting files and directories in the tree
     sort_function = nil,
+    follow_current_file = { enabled = true },
     default_component_configs = {
         container = {
             enable_character_fade = true,
@@ -171,11 +172,6 @@ local config = {
                 --".null-ls_*",
             },
         },
-        follow_current_file = {
-            enabled = false, -- This will find and focus the file in the active buffer every time
-            --               -- the current file is changed while the tree is open.
-            leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
-        },
         group_empty_dirs = false, -- when true, empty folders will be grouped together
         hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
         -- in whatever position is specified in window.position
@@ -183,6 +179,7 @@ local config = {
         -- window like netrw would, regardless of window.position
         -- "disabled",    -- netrw left alone, neo-tree does not handle opening dirs
         use_libuv_file_watcher = false, -- This will use the OS level file watchers to detect changes
+        follow_current_file = { enabled = true },
         -- instead of relying on nvim autocmd events.
         window = {
             mappings = {
