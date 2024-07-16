@@ -53,6 +53,7 @@
   "peek.nvim": { "branch": "master", "commit": "5820d937d5414baea5f586dc2a3d912a74636e5b" },
   "persistence.nvim": { "branch": "main", "commit": "43f180d2f544cacc72e795b4c19a4f9f60792499" },
   "plenary.nvim": { "branch": "master", "commit": "a3e3bc82a3f95c5ed0d7201546d5d2c19b20d683" },
+  "rasmus.nvim": { "branch": "main", "commit": "86d608bd1d12a53b39d9b4b2847cd7c3ea81d473" },
   "rose-pine": { "branch": "main", "commit": "dded5c15e9d27ac95ad1e803b35a752d80f3f42b" },
   "schemastore.nvim": { "branch": "main", "commit": "82db29c48789e6b61bd2ba78df8ffd7bf66470d9" },
   "session-lens": { "branch": "main", "commit": "1b65d8e1bcd1836c5135cce118ba18d662a9dabd" },
@@ -62,7 +63,7 @@
   "tokyonight.nvim": { "branch": "main", "commit": "5c6ce13bd2a44d56009a16412833713d31b3181d" },
   "trouble.nvim": { "branch": "main", "commit": "f4eeadc8ab5b9558797820707e3ccdf3e1559838" },
   "ts-comments.nvim": { "branch": "main", "commit": "2d9882f8b06b05f5f79520e31cc6ba14ceb8910d" },
-  "typescript-tools.nvim": { "branch": "master", "commit": "3ecf6b29435dc7979eb5cdf1a9ff11bd65f5ea90" },
   "typescript.nvim": { "branch": "main", "commit": "4de85ef699d7e6010528dcfbddc2ed4c2c421467" },
+  "vscode.nvim": { "branch": "main", "commit": "3ba16d763097cecc75eb93761f4a981467acfc23" },
   "which-key.nvim": { "branch": "main", "commit": "6e5b5b05085e5d3786096bb03aa465b588ddf17d" }
 }

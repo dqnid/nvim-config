@@ -1,5 +1,7 @@
 return {
     -- Themes
+    { "Mofiqul/vscode.nvim" },
+    { "kvrohit/rasmus.nvim" },
     { "mellow-theme/mellow.nvim" },
     {
         "dgox16/oldworld.nvim",
@@ -17,7 +19,7 @@ return {
     {
         "LazyVim/LazyVim",
         opts = {
-            colorscheme = "oldworld",
+            colorscheme = "rasmus",
         },
     },
 
@@ -42,9 +44,9 @@ return {
         opts = function()
             return require("plugins.opts.lspconfig")
         end,
-        config = function()
-            require("plugins.configs.lspconfig")
-        end,
+        -- config = function()
+        --     require("plugins.configs.lspconfig")
+        -- end,
     },
 
     -- lsp stuff
@@ -402,23 +404,6 @@ return {
             })
         end,
         lazy = false,
-    },
-    {
-        "pmizio/typescript-tools.nvim",
-        dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-        opts = {},
-        config = function()
-            require("typescript-tools").setup({
-                settings = {
-                    tsserver_plugins = {
-                        -- for TypeScript v4.9+
-                        "@styled/typescript-styled-plugin",
-                        -- or for older TypeScript versions
-                        -- "typescript-styled-plugin",
-                    },
-                },
-            })
-        end,
     },
     {
         "kylechui/nvim-surround",
