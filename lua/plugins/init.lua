@@ -425,6 +425,16 @@ return {
         lazy = false,
     },
 
+    -- Mini map
+    -- require('mini.map').open()
+    {
+        "echasnovski/mini.map",
+        version = "*",
+        opts = function()
+            return require("plugins.opts.minimap")
+        end,
+    },
+
     -- IA with codium
     "Exafunction/codeium.vim",
 }
