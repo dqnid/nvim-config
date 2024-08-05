@@ -1,5 +1,26 @@
 local options = {
-    ensure_installed = { "lua-language-server", "stylua", "shfmt" }, -- not an option from mason.nvim
+    ensure_installed = {
+        "stylua",
+        "shfmt",
+        "lua-language-server lua_ls",
+        "clang-format",
+        "clangd",
+        "css-lsp cssls",
+        "deno denols",
+        "emmet-language-server emmet_language_server",
+        "flake8",
+        "html-lsp html",
+        "json-lsp jsonls",
+        "prettier",
+        "pyright",
+        "shellcheck",
+        "typescript-language-server tsserver",
+        "vtsls",
+        "vue-language-server volar",
+        "rust-analyzer rust_analyzer",
+        "rust_hdl vhdl_ls",
+        --"rustfmt", -- better installed via "$ rustup component add rustfmt"
+    }, -- not an option from mason.nvim
 
     PATH = "skip",
 

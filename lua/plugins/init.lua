@@ -1,19 +1,15 @@
 return {
     -- Themes
-    { "Mofiqul/vscode.nvim" },
-    { "kvrohit/rasmus.nvim" },
-    { "mellow-theme/mellow.nvim" },
+    { "kvrohit/rasmus.nvim" }, -- dark colorscheme
     {
-        "dgox16/oldworld.nvim",
+        "maxmx03/solarized.nvim",
         lazy = false,
         priority = 1000,
+        config = function()
+            --vim.o.background = "light" -- or 'light'
+            --vim.cmd.colorscheme("solarized")
+        end,
     },
-    --vim.cmd("colorscheme rose-pine")
-    -- vim.cmd("colorscheme rose-pine-main")
-    -- vim.cmd("colorscheme rose-pine-moon")
-    -- vim.cmd("colorscheme rose-pine-dawn")
-    { "rose-pine/neovim", name = "rose-pine" },
-    "shaunsingh/nord.nvim", -- nord
 
     -- Configure LazyVim to load colorscheme
     {
@@ -25,8 +21,9 @@ return {
 
     -- use mini.starter instead of alpha
     { import = "lazyvim.plugins.extras.ui.mini-starter" },
-
+    { import = "lazyvim.plugins.extras.lang.typescript" },
     { import = "lazyvim.plugins.extras.lang.json" },
+
     {
         "dqnid/nvim-blueprints",
         name = "blueprints",
@@ -67,10 +64,6 @@ return {
             vim.g.mason_binaries_list = opts.ensure_installed
         end,
     },
-
-    -- for typescript, LazyVim also includes extra specs to properly setup lspconfig,
-    -- treesitter, mason and typescript.nvim. So instead of the above, you can use:
-    { import = "lazyvim.plugins.extras.lang.typescript" },
 
     {
         "nvim-treesitter/nvim-treesitter",
@@ -157,6 +150,15 @@ return {
         "stevearc/conform.nvim",
         opts = function()
             return require("plugins.opts.conformFormat")
+        end,
+    },
+
+    {
+        "kylechui/nvim-surround",
+        version = "*",
+        event = "VeryLazy",
+        config = function()
+            require("nvim-surround").setup({})
         end,
     },
 
@@ -405,14 +407,7 @@ return {
         end,
         lazy = false,
     },
-    {
-        "kylechui/nvim-surround",
-        version = "*",
-        event = "VeryLazy",
-        config = function()
-            require("nvim-surround").setup({})
-        end,
-    },
+
     {
 
         "rmagatti/auto-session",
@@ -425,8 +420,6 @@ return {
         lazy = false,
     },
 
-    -- Mini map
-    -- require('mini.map').open()
     {
         "echasnovski/mini.map",
         version = "*",
@@ -435,6 +428,10 @@ return {
         end,
     },
 
+    -- OPTIONAL --
+    --------------
+    -- Mini map
+    -- require('mini.map').open()
     -- IA with codium
-    "Exafunction/codeium.vim",
+    -- "Exafunction/codeium.vim",
 }
