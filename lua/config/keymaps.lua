@@ -1,7 +1,8 @@
 -- This file is automatically loaded by lazyvim.config.init
 local map = vim.keymap.set
 
--- Bufferline
+---- Bufferline ----
+
 map("n", "bg", "<CMD>BufferLinePick<CR>")
 map("n", "<leader>bpx", "<CMD>BufferLinePickClose<CR>")
 map("n", "<leader>box", "<CMD>BufferLineCloseOthers<CR>")
@@ -20,7 +21,15 @@ map("n", "<leader>bd", LazyVim.ui.bufremove, { desc = "Delete Buffer" })
 map("n", "<leader>x", LazyVim.ui.bufremove, { desc = "Delete Buffer" })
 map("n", "<leader>bD", "<cmd>:bd<cr>", { desc = "Delete Buffer and Window" })
 
--- Git
+---------------------------------------------------------------------------
+
+-- Treesitter context
+map("n", "<leader>tc", "<cmd>TSContextToggle<CR>", { desc = "Toggle treesitter context" })
+
+-- Blueprints
+map("n", "<leader>ct", "<cmd>lua require('blueprints').createFromTemplateTelescope()<CR>", { desc = "Nvim blueprints" })
+
+---- Git ----
 map("n", "<leader>gb", "<CMD>Gitsigns blame<CR>")
 map("n", "<leader>gd", "<CMD>Gitsigns diffthis<CR>")
 map("n", "K", "<CMD>Gitsigns blame_line<CR>")
@@ -28,12 +37,6 @@ map("n", "<leader>gtb", "<CMD>Gitsigns toggle_current_line_blame<CR>")
 map("n", "<leader>gtd", "<CMD>Gitsigns toggle_deleted")
 map("n", "<leader>gc", "<cmd>Telescope git_commits <CR>", { desc = "Git commits" })
 map("n", "<leader>gs", "<cmd>Telescope git_status <CR>", { desc = "Git status" })
-
--- Treesitter context
-map("n", "<leader>tc", "<cmd>TSContextToggle<CR>", { desc = "Toggle treesitter context" })
-
--- Blueprints
-map("n", "<leader>ct", "<cmd>lua require('blueprints').createFromTemplateTelescope()<CR>", { desc = "Nvim blueprints" })
 
 -- lazygit
 map("n", "<leader>gg", function()
@@ -56,6 +59,8 @@ end, { desc = "Lazygit Log" })
 map("n", "<leader>gL", function()
     LazyVim.lazygit({ args = { "log" } })
 end, { desc = "Lazygit Log (cwd)" })
+
+---------------------------------------------------------------------------
 
 -- Neotree
 map("n", "<C-n>", "<cmd>Neotree toggle<cr>", { desc = "Toggle Neotree open" })
@@ -109,11 +114,8 @@ map("n", "<leader>wl", function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 end, { desc = "List workspace folders" })
 
--- TS lsp
-map("n", "<leader>to", "TypescriptOrganizeImports", { desc = "Organize Imports" })
-map("n", "<leader>tr", "TypescriptRenameFile", { desc = "Rename File" })
+---- Telescope find ----
 
--- Telescope find
 map("n", "<leader>ff", "<cmd> Telescope find_files <CR>", { desc = "Find files" })
 map("n", "<leader>fa", "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", { desc = "Find all" })
 map("n", "<leader>fw", "<cmd> Telescope live_grep <CR>", { desc = "Live grep" })
@@ -122,40 +124,15 @@ map("n", "<leader>fh", "<cmd> Telescope help_tags <CR>", { desc = "Help page" })
 map("n", "<leader>fo", "<cmd> Telescope oldfiles <CR>", { desc = "Fild old files" })
 map("n", "<leader>fz", "<cmd> Telescope current_buffer_fuzzy_find <CR>", { desc = "Find in current buffer" })
 
--- Comment
-map(
-    "n",
-    "<leader>/",
-    "<cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
-    { desc = "Toggle comment current" }
-)
-
--- IA codium
-map("n", "<leader>ca", "<cmd> CodeiumToggle <CR>", { desc = "Toggle codeium IA assistance" })
-map("i", "<C-g>", function()
-    return vim.fn["codeium#Accept"]()
-end, { expr = true, silent = true })
-map("i", "<c-;>", function()
-    return vim.fn["codeium#CycleCompletions"](1)
-end, { expr = true, silent = true })
-map("i", "<c-,>", function()
-    return vim.fn["codeium#CycleCompletions"](-1)
-end, { expr = true, silent = true })
-map("i", "<c-x>", function()
-    return vim.fn["codeium#Clear"]()
-end, { expr = true, silent = true })
-
--- Terminal
-
------------------------------------------------------------
--- Example
 -----------------------------------------------------------
 
 -- better up/down
-map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
-map({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
-map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
-map({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
+-- map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
+-- map({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
+-- map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
+-- map({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
+
+---- Movement ----
 
 -- Move to window using the <ctrl> hjkl keys
 map("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
@@ -197,10 +174,7 @@ map("n", "N", "'nN'[v:searchforward].'zv'", { expr = true, desc = "Prev Search R
 map("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
 map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
 
--- Add undo break-points
-map("i", ",", ",<c-g>u")
-map("i", ".", ".<c-g>u")
-map("i", ";", ";<c-g>u")
+-----------------------------------------------------------
 
 -- save file
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
@@ -209,22 +183,17 @@ map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 map("v", "<", "<gv")
 map("v", ">", ">gv")
 
--- commenting
--- map("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Below" })
--- map("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Above" })
-
 -- new file
-map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
-
--- map("n", "<leader>xl", "<cmd>lopen<cr>", { desc = "Location List" })
--- map("n", "<leader>xq", "<cmd>copen<cr>", { desc = "Quickfix List" })
+map("n", "<leader>nf", "<cmd>enew<cr>", { desc = "New File" })
 
 map("n", "[q", vim.cmd.cprev, { desc = "Previous Quickfix" })
 map("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })
 
+---- Code ----
+
 -- formatting
 map({ "n", "v" }, "<leader>cf", function()
-    require("conform").format({ bufnr = args.buf })
+    require("conform").format()
 end, { desc = "Format" })
 
 -- diagnostic
@@ -243,7 +212,8 @@ map("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
 map("n", "]w", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
 map("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
 
--- toggle options
+---- Toggle options ----
+
 map("n", "<leader>uf", function()
     LazyVim.format.toggle()
 end, { desc = "Toggle Auto Format (Global)" })
@@ -284,29 +254,27 @@ end, { desc = "Toggle Treesitter Highlight" })
 map("n", "<leader>ub", function()
     LazyVim.toggle("background", false, { "light", "dark" })
 end, { desc = "Toggle Background" })
+-- aerial
+map("n", "<leader>ua", "<cmd>AerialToggle<cr>", { desc = "Toggle aerial view" })
 
--- quit
-map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
+---------------------------------------------------------------------------
 
 -- highlights under cursor
 map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
 map("n", "<leader>uI", "<cmd>InspectTree<cr>", { desc = "Inspect Tree" })
 
--- LazyVim Changelog
-map("n", "<leader>L", function()
-    LazyVim.news.changelog()
-end, { desc = "LazyVim Changelog" })
+---- Terminal ----
 
--- floating terminal
-local lazyterm = function()
-    LazyVim.terminal(nil, { cwd = LazyVim.root() })
-end
-map("n", "<leader>ft", lazyterm, { desc = "Terminal (Root Dir)" })
-map("n", "<leader>fT", function()
-    LazyVim.terminal()
-end, { desc = "Terminal (cwd)" })
-map("n", "<c-/>", lazyterm, { desc = "Terminal (Root Dir)" })
-map("n", "<c-_>", lazyterm, { desc = "which_key_ignore" })
+map("n", "<leader>tf", "<cmd>ToggleTerm direction=float name=floating<CR>", { desc = "Toggle floating terminal" })
+
+map(
+    "n",
+    "<leader>ts",
+    "<cmd>ToggleTerm direction=horizontal name=horizontal<CR>",
+    { desc = "Toggle horizontal terminal" }
+)
+
+map("n", "<leader>tv", "<cmd>ToggleTerm direction=vertical name=vertical<CR>", { desc = "Toggle vertical terminal" })
 
 -- Terminal Mappings
 map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
@@ -317,7 +285,10 @@ map("t", "<C-l>", "<cmd>wincmd l<cr>", { desc = "Go to Right Window" })
 map("t", "<C-/>", "<cmd>close<cr>", { desc = "Hide Terminal" })
 map("t", "<c-_>", "<cmd>close<cr>", { desc = "which_key_ignore" })
 
--- windows
+---------------------------------------------------------------------------
+
+---- Windows ----
+
 map("n", "<leader>ww", "<C-W>p", { desc = "Other Window", remap = true })
 map("n", "<leader>wd", "<C-W>c", { desc = "Delete Window", remap = true })
 map("n", "<leader>w-", "<C-W>s", { desc = "Split Window Below", remap = true })
@@ -328,11 +299,15 @@ map("n", "<leader>wm", function()
     LazyVim.toggle.maximize()
 end, { desc = "Maximize Toggle" })
 
--- tabs
-map("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Last Tab" })
-map("n", "<leader><tab>o", "<cmd>tabonly<cr>", { desc = "Close Other Tabs" })
-map("n", "<leader><tab>f", "<cmd>tabfirst<cr>", { desc = "First Tab" })
-map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
-map("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
-map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
-map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
+-- quit
+map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
+
+---- Utils ----
+
+-- undotree
+map("n", "<leader>ut", "<cmd>UndotreeToggle<cr>", { desc = "Toggle undotree" })
+
+-- aerial
+map("n", "<leader>a", "<cmd>AerialToggle<cr>", { desc = "Toggle aerial view" })
+map("n", "]a", "<cmd>AerialNext<cr>", { desc = "Next aerial view" })
+map("n", "[a", "<cmd>AerialPrev<cr>", { desc = "Prev aerial view" })

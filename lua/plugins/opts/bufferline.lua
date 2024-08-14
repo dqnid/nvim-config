@@ -12,7 +12,7 @@ local config = {
     options = {
         themeable = true,
         numbers = "none",
-        diagnostics = "nvim_lsp",
+        diagnostics = "nvim_lsp", -- or "coc"
         max_prefix_length = 8,
         close_command = "b# | bd#",
         right_mouse_command = "b# | bd#",
@@ -31,13 +31,27 @@ local config = {
         show_tab_indicators = true,
         duplicates_across_groups = false, -- whether to consider duplicate paths in different groups as duplicates
         persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
-        separator_style = "slope", -- "slant" | "slope" | "thick" | "thin" | { 'any', 'any' }, always_show_bufferline = false,
+        separator_style = "thick", -- "slant" | "slope" | "thick" | "thin" | { 'any', 'any' },
+        -- always_show_bufferline = false,
         auto_toggle_bufferline = true,
         show_close_icon = true,
         hover = {
             enabled = true,
             delay = 200,
             reveal = { "close" },
+        },
+        offsets = {
+            {
+                filetype = "neo-tree",
+                text = "File Explorer",
+                highlight = "Directory",
+                separator = true, -- use a "true" to enable the default, or set your own character
+            },
+        },
+        groups = {
+            items = {
+                require("bufferline.groups").builtin.pinned:with({ icon = "" }),
+            },
         },
         -- groups = {
         --     options = {

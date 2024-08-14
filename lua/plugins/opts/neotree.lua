@@ -7,6 +7,10 @@ local config = {
     sort_case_insensitive = false, -- used when sorting files and directories in the tree
     sort_function = nil,
     follow_current_file = { enabled = true },
+    source_selector = {
+        winbar = true,
+        statusline = false,
+    },
     default_component_configs = {
         container = {
             enable_character_fade = true,

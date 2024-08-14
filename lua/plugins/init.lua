@@ -1,15 +1,8 @@
 return {
     -- Themes
+    "wincent/base16-nvim",
+    "daschw/leaf.nvim",
     { "kvrohit/rasmus.nvim" }, -- dark colorscheme
-    {
-        "maxmx03/solarized.nvim",
-        lazy = false,
-        priority = 1000,
-        config = function()
-            --vim.o.background = "light" -- or 'light'
-            --vim.cmd.colorscheme("solarized")
-        end,
-    },
 
     -- Configure LazyVim to load colorscheme
     {
@@ -88,22 +81,6 @@ return {
         dependencies = { "rafamadriz/friendly-snippets" },
     },
 
-    -- JSON and YML schema catalog
-    -- * Usefull because a schema describes the structure of data in a document
-    {
-        "b0o/schemastore.nvim",
-        init = function()
-            require("lspconfig").jsonls.setup({
-                settings = {
-                    json = {
-                        schemas = require("schemastore").json.schemas(),
-                        validate = { enable = true },
-                    },
-                },
-            })
-        end,
-    },
-
     -- Tab line
     {
         "akinsho/bufferline.nvim",
@@ -121,7 +98,6 @@ return {
         opts = {},
         init = function()
             require("ibl").setup({
-                indent = { char = "|" },
                 whitespace = {
                     highlight = { "Whitespace", "NonText" },
                     remove_blankline_trail = true,
@@ -153,15 +129,6 @@ return {
         end,
     },
 
-    {
-        "kylechui/nvim-surround",
-        version = "*",
-        event = "VeryLazy",
-        config = function()
-            require("nvim-surround").setup({})
-        end,
-    },
-
     -- LINE
     {
         "nvim-lualine/lualine.nvim",
@@ -169,13 +136,6 @@ return {
         dependencies = { "nvim-tree/nvim-web-devicons" },
         opts = function()
             return require("plugins.opts.lualine")
-        end,
-    },
-    -- Extend styles for vim.input, vim.select, etc.
-    {
-        "stevearc/dressing.nvim",
-        opts = function()
-            return require("plugins.opts.dressing")
         end,
     },
 
@@ -394,43 +354,49 @@ return {
     },
 
     {
-        "rmagatti/session-lens",
-        requires = { "rmagatti/auto-session", "nvim-telescope/telescope.nvim" },
-        config = function()
-            require("session-lens").setup({
-                prompt_title = "LAST SESSIONS",
-                path_display = { "shorten" },
-                theme = "ivy", -- default is dropdown
-                theme_conf = { border = false },
-                previewer = true,
-            })
-        end,
-        lazy = false,
-    },
-
-    {
 
         "rmagatti/auto-session",
-        config = function()
-            require("auto-session").setup({
-                log_level = "error",
-                auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
-            })
+        dependencies = {
+            "nvim-telescope/telescope.nvim",
+        },
+        opts = function()
+            return require("plugins.opts.autosession")
         end,
         lazy = false,
     },
 
+    { "mbbill/undotree", lazy = false },
+
+    -- Map of file elements
     {
-        "echasnovski/mini.map",
+        "stevearc/aerial.nvim",
+        opts = {},
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+            "nvim-tree/nvim-web-devicons",
+        },
+    },
+
+    -- Terminals
+    {
+        "akinsho/toggleterm.nvim",
+        lazy = false,
         version = "*",
         opts = function()
-            return require("plugins.opts.minimap")
+            return require("plugins.opts.toggleterm")
         end,
     },
 
     -- OPTIONAL --
     --------------
     -- Mini map
+    -- {
+    --     "echasnovski/mini.map",
+    --     version = "*",
+    --     opts = function()
+    --         return require("plugins.opts.minimap")
+    --     end,
+    -- },
     -- require('mini.map').open()
     -- IA with codium
     -- "Exafunction/codeium.vim",

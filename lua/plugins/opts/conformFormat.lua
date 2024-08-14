@@ -13,8 +13,8 @@ local config = {
                 return { "isort", "black" }
             end
         end,
-        --["*"] = { "prettierd", "prettier" }, -- run in all filetypes
         ["_"] = { "trim_whitespace" }, -- run only on filetypes without formater
+        -- ["*"] = { "trim_whitespace" }, -- run in all filetypes
     },
     format_on_save = {
         timeout_ms = 500,

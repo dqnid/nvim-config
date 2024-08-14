@@ -6,6 +6,7 @@ Refer to the [documentation](https://lazyvim.github.io/installation) to get star
 ## Install these:
 
 - `$ npm i -g vscode-langservers-extracted`
+- `$ npm install -g @vtsls/language-server`
 - `# pacman -S lazygit`
 
 ## TODO

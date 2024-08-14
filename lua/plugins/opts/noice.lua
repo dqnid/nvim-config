@@ -2,7 +2,17 @@ local config = {
     views = {
         cmdline_popup = {
             position = {
-                row = 15,
+                row = 3,
+                col = "50%",
+            },
+            size = {
+                width = 60,
+                height = "auto",
+            },
+        },
+        cmdline_popupmenu = {
+            position = {
+                row = 6,
                 col = "50%",
             },
             size = {
