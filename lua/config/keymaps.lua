@@ -31,7 +31,8 @@ map("n", "<leader>ct", "<cmd>lua require('blueprints').createFromTemplateTelesco
 
 ---- Git ----
 map("n", "<leader>gb", "<CMD>Gitsigns blame<CR>")
-map("n", "<leader>gd", "<CMD>Gitsigns diffthis<CR>")
+map("n", "<leader>gd", "<CMD>DiffviewOpen<CR>")
+map("n", "<leader>gx", "<CMD>DiffviewClose<CR>")
 map("n", "K", "<CMD>Gitsigns blame_line<CR>")
 map("n", "<leader>gtb", "<CMD>Gitsigns toggle_current_line_blame<CR>")
 map("n", "<leader>gtd", "<CMD>Gitsigns toggle_deleted")
@@ -133,18 +134,6 @@ map("n", "<leader>fz", "<cmd> Telescope current_buffer_fuzzy_find <CR>", { desc 
 -- map({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
 
 ---- Movement ----
-
--- Move to window using the <ctrl> hjkl keys
-map("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
-map("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
-map("n", "<C-k>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
-map("n", "<C-l>", "<C-w>l", { desc = "Go to Right Window", remap = true })
-
--- Resize window using <ctrl> arrow keys
-map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
-map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
-map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
-map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
 
 -- Move Lines
 map("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "Move Down" })
@@ -266,6 +255,7 @@ map("n", "<leader>uI", "<cmd>InspectTree<cr>", { desc = "Inspect Tree" })
 ---- Terminal ----
 
 map("n", "<leader>tf", "<cmd>ToggleTerm direction=float name=floating<CR>", { desc = "Toggle floating terminal" })
+map("n", "<leader>z", "<cmd>ToggleTerm direction=float name=floating<CR>", { desc = "Toggle floating terminal" })
 
 map(
     "n",
@@ -299,8 +289,27 @@ map("n", "<leader>wm", function()
     LazyVim.toggle.maximize()
 end, { desc = "Maximize Toggle" })
 
+-- Move to window using the <ctrl> hjkl keys
+map("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
+map("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
+map("n", "<C-k>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
+map("n", "<C-l>", "<C-w>l", { desc = "Go to Right Window", remap = true })
+
+map("n", "<C-A-k>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
+map("n", "<C-A-j>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
+map("n", "<C-A-h>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
+map("n", "<C-A-l>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
+
+-- Resize window using <ctrl> arrow keys
+map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
+map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
+map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
+map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
+
 -- quit
 map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
+
+---------------------------------------------------------------------------
 
 ---- Utils ----
 
