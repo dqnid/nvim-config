@@ -5,7 +5,11 @@ local config = {
         lua = { "stylua" },
         go = { "goimports", "gofmt" },
         javascript = { { "prettierd", "prettier" } },
+        javascriptreact = { { "prettierd", "prettier" } },
         typescript = { { "prettierd", "prettier" } },
+        typescriptreact = { { "prettierd", "prettier" } },
+        css = { { "prettierd", "prettier" } },
+        scss = { { "prettierd", "prettier" } },
         python = function(bufnr)
             if require("conform").get_formatter_info("ruff_format", bufnr).available then
                 return { "ruff_format" }
