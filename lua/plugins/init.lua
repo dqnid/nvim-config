@@ -1,7 +1,7 @@
 return {
     -- Themes
-    "wincent/base16-nvim",
-    "daschw/leaf.nvim",
+    "killitar/obscure.nvim",
+    "ishan9299/nvim-solarized-lua",
     { "kvrohit/rasmus.nvim" }, -- dark colorscheme
 
     -- Configure LazyVim to load colorscheme
