@@ -377,6 +377,13 @@ return {
         },
     },
 
+    -- Colorize
+    {'norcalli/nvim-colorizer.lua',
+      config = function()
+        require 'colorizer'.setup {}
+      end,
+    },
+
     -- Terminals
     {
         "akinsho/toggleterm.nvim",
