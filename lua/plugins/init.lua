@@ -73,13 +73,13 @@ return {
     },
 
     -- Basics
-    {
-        "L3MON4D3/LuaSnip",
-        version = "v2.*",
-        -- install jsregexp (optional!).
-        build = "make install_jsregexp",
-        dependencies = { "rafamadriz/friendly-snippets" },
-    },
+    -- {
+    --     "L3MON4D3/LuaSnip",
+    --     version = "v2.*",
+    --     -- install jsregexp (optional!).
+    --     build = "make install_jsregexp",
+    --     dependencies = { "rafamadriz/friendly-snippets" },
+    -- },
 
     -- Tab line
     {
@@ -118,8 +118,8 @@ return {
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-emoji",
     "hrsh7th/cmp-nvim-lsp",
+    "hrsh7th/cmp-cmdline",
     "hrsh7th/cmp-path",
-    "saadparwaiz1/cmp_luasnip",
 
     -- Format
     {
@@ -377,21 +377,11 @@ return {
         },
     },
 
-    -- Colorize
+    -- Color highlighter
     {'norcalli/nvim-colorizer.lua',
       config = function()
         require 'colorizer'.setup {}
       end,
-    },
-
-    -- Terminals
-    {
-        "akinsho/toggleterm.nvim",
-        lazy = false,
-        version = "*",
-        opts = function()
-            return require("plugins.opts.toggleterm")
-        end,
     },
 
     -- OPTIONAL --
