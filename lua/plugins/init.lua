@@ -385,6 +385,16 @@ return {
         end,
     },
 
+    -- Terminals
+    {
+        "akinsho/toggleterm.nvim",
+        lazy = false,
+        version = "*",
+        opts = function()
+            return require("plugins.opts.toggleterm")
+        end,
+    },
+
     -- OPTIONAL --
     --------------
     -- Mini map
