@@ -73,13 +73,13 @@ return {
     },
 
     -- Basics
-    -- {
-    --     "L3MON4D3/LuaSnip",
-    --     version = "v2.*",
-    --     -- install jsregexp (optional!).
-    --     build = "make install_jsregexp",
-    --     dependencies = { "rafamadriz/friendly-snippets" },
-    -- },
+    {
+        "L3MON4D3/LuaSnip",
+        version = "v2.*",
+        -- install jsregexp (optional!).
+        build = "make install_jsregexp",
+        dependencies = { "rafamadriz/friendly-snippets" },
+    },
 
     -- Tab line
     {
@@ -378,10 +378,11 @@ return {
     },
 
     -- Color highlighter
-    {'norcalli/nvim-colorizer.lua',
-      config = function()
-        require 'colorizer'.setup {}
-      end,
+    {
+        "norcalli/nvim-colorizer.lua",
+        config = function()
+            require("colorizer").setup({})
+        end,
     },
 
     -- OPTIONAL --
