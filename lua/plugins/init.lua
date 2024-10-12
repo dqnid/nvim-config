@@ -2,6 +2,7 @@ return {
     -- Themes
     "killitar/obscure.nvim",
     "ishan9299/nvim-solarized-lua",
+    "navarasu/onedark.nvim",
     { "kvrohit/rasmus.nvim" }, -- dark colorscheme
 
     {
@@ -23,7 +24,7 @@ return {
     {
         "LazyVim/LazyVim",
         opts = {
-            colorscheme = "rasmus",
+            colorscheme = "onedark",
         },
     },
 
