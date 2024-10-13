@@ -307,6 +307,13 @@ return {
         "nvim-telescope/telescope.nvim",
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
+            {
+                "isak102/telescope-git-file-history.nvim",
+                dependencies = {
+                    "nvim-lua/plenary.nvim",
+                    "tpope/vim-fugitive",
+                },
+            },
             { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
         },
         cmd = "Telescope",
@@ -316,6 +323,7 @@ return {
         config = function(_, opts)
             local telescope = require("telescope")
             telescope.setup(opts)
+            telescope.load_extension("git_file_history")
 
             -- load extensions
             for _, ext in ipairs(opts.extensions_list) do
