@@ -224,10 +224,16 @@ return {
         dependencies = {
             "nvim-lua/plenary.nvim",
         },
-        -- setting the keybinding for LazyGit with 'keys' is recommended in
-        -- order to load the plugin when the command is run for the first time
         keys = {
             { "<leader>glg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
+        },
+    },
+    {
+        "rbong/vim-flog",
+        lazy = true,
+        cmd = { "Flog", "Flogsplit", "Floggit" },
+        dependencies = {
+            "tpope/vim-fugitive",
         },
     },
     {
