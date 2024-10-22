@@ -1,4 +1,5 @@
 local options = {
+    auto_install = true,
     ensure_installed = {
         "lua",
         "css",
@@ -15,6 +16,7 @@ local options = {
         "query",
         "regex",
         "typescript",
+        "styled",
         "vim",
         "yaml",
     },

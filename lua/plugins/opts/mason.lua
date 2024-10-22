@@ -22,8 +22,6 @@ local options = {
         --"rustfmt", -- better installed via "$ rustup component add rustfmt"
     }, -- not an option from mason.nvim
 
-    PATH = "skip",
-
     ui = {
         icons = {
             package_pending = " ",

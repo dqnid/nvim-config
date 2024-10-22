@@ -1,85 +1,56 @@
 return {
-    -- Themes
-    "killitar/obscure.nvim",
-    "ishan9299/nvim-solarized-lua",
-    { "kvrohit/rasmus.nvim" }, -- dark colorscheme
+    -- ╭────────╮
+    -- │ Themes │
+    -- ╰────────╯
+    { "kvrohit/rasmus.nvim" },
+    "gmr458/cold.nvim",
+    "shaunsingh/nord.nvim",
 
-    {
-        "maxmx03/solarized.nvim",
-        lazy = false,
-        priority = 1000,
-        opts = {
-            variant = "summer", -- "spring" | "summer" | "autumn" | "winter" (default)
-        },
-        config = function(_, opts)
-            -- vim.o.termguicolors = true
-            -- vim.o.background = "light"
-            -- require("solarized").setup(opts)
-            -- vim.cmd.colorscheme("solarized")
-        end,
-    },
-
-    -- Configure LazyVim to load colorscheme
+    -- ╭─────────╮
+    -- │ LazyVim │
+    -- ╰─────────╯
     {
         "LazyVim/LazyVim",
         opts = {
             colorscheme = "rasmus",
         },
     },
-
-    -- use mini.starter instead of alpha
     { import = "lazyvim.plugins.extras.ui.mini-starter" },
-    { import = "lazyvim.plugins.extras.lang.typescript" },
-    { import = "lazyvim.plugins.extras.lang.json" },
 
-    {
-        "dqnid/nvim-blueprints",
-        name = "blueprints",
-        init = function()
-            require("blueprints").setup({ blueprintsDir = "/home/danih/.config/nvim/blueprints" })
-        end,
-    },
-    -- add tsserver and setup with typescript.nvim instead of lspconfig
+    -- ╭─────╮
+    -- │ LSP │
+    -- ╰─────╯
+    { "VonHeikemen/lsp-zero.nvim", branch = "v4.x" },
+
     {
         "neovim/nvim-lspconfig",
-        lazy = false,
-        dependencies = {
-            "jose-elias-alvarez/typescript.nvim",
-        },
-        opts = function()
-            return require("plugins.opts.lspconfig")
-        end,
-        -- config = function()
-        --     require("plugins.configs.lspconfig")
-        -- end,
     },
 
-    -- lsp stuff
     {
         "williamboman/mason.nvim",
         cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUpdate" },
         opts = function()
             return require("plugins.opts.mason")
         end,
-        config = function(_, opts)
-            require("mason").setup(opts)
-
-            -- custom nvchad cmd to install all mason binaries listed
-            vim.api.nvim_create_user_command("MasonInstallAll", function()
-                vim.cmd("MasonInstall " .. table.concat(opts.ensure_installed, " "))
-            end, {})
-
-            vim.g.mason_binaries_list = opts.ensure_installed
-        end,
+    },
+    {
+        "williamboman/mason-lspconfig.nvim",
     },
 
+    -- ╭──────────────────────────╮
+    -- │ TreeSitter - Code parser │
+    -- ╰──────────────────────────╯
     {
         "nvim-treesitter/nvim-treesitter",
         opts = function()
             return require("plugins.opts.treesitter")
         end,
+        config = function(_, opts)
+            require("nvim-treesitter.configs").setup(opts)
+        end,
     },
-
+    -- To test if TreeSitter is working
+    "nvim-treesitter/playground",
     {
         "nvim-treesitter/nvim-treesitter-context",
         opts = function()
@@ -87,16 +58,100 @@ return {
         end,
     },
 
-    -- Basics
+    -- ╭──────────────────╮
+    -- │ Code diagnostics │
+    -- ╰──────────────────╯
+    {
+        "folke/trouble.nvim",
+        opts = { use_diagnostic_signs = true },
+    },
+
+    -- ╭────────────────╮
+    -- │ Code formatter │
+    -- ╰────────────────╯
+    {
+        "stevearc/conform.nvim",
+        opts = function()
+            return require("plugins.opts.conformFormat")
+        end,
+    },
+
+    -- ╭───────────────╮
+    -- │ Code comments │
+    -- ╰───────────────╯
+    {
+        "numToStr/Comment.nvim",
+        keys = {
+            { "gcc", mode = "n", desc = "Comment toggle current line" },
+            { "gc", mode = { "n", "o" }, desc = "Comment toggle linewise" },
+            { "gc", mode = "x", desc = "Comment toggle linewise (visual)" },
+            { "gbc", mode = "n", desc = "Comment toggle current block" },
+            { "gb", mode = { "n", "o" }, desc = "Comment toggle blockwise" },
+            { "gb", mode = "x", desc = "Comment toggle blockwise (visual)" },
+        },
+        config = function(_, opts)
+            require("Comment").setup(opts)
+        end,
+    },
+
+    -- ╭──────────────────╮
+    -- │ Completion Utils │
+    -- ╰──────────────────╯
     {
         "L3MON4D3/LuaSnip",
         version = "v2.*",
         -- install jsregexp (optional!).
         build = "make install_jsregexp",
         dependencies = { "rafamadriz/friendly-snippets" },
+        config = function()
+            require("luasnip.loaders.from_vscode").load({})
+        end,
+    },
+    {
+        "hrsh7th/nvim-cmp",
+        dependencies = { "hrsh7th/cmp-emoji" },
+        opts = function()
+            return require("plugins.opts.cmp")
+        end,
+    },
+    "hrsh7th/cmp-buffer",
+    "hrsh7th/cmp-emoji",
+    "hrsh7th/cmp-nvim-lsp",
+    "hrsh7th/cmp-cmdline",
+    "hrsh7th/cmp-path",
+    {
+        "dqnid/nvim-blueprints",
+        name = "blueprints",
+        init = function()
+            require("blueprints").setup({ blueprintsDir = "/home/danih/.config/nvim/blueprints" })
+        end,
     },
 
-    -- Tab line
+    -- ╭─────╮
+    -- │ Git │
+    -- ╰─────╯
+    {
+        "lewis6991/gitsigns.nvim",
+        opts = function()
+            return require("plugins.opts.gitsigns")
+        end,
+    },
+    {
+        "sindrets/diffview.nvim",
+        lazy = false,
+    },
+    {
+        "rbong/vim-flog",
+        lazy = true,
+        cmd = { "Flog", "Flogsplit", "Floggit" },
+        dependencies = {
+            "tpope/vim-fugitive",
+        },
+    },
+
+    -- ╭─────────╮
+    -- │ Context │
+    -- ╰─────────╯
     {
         "akinsho/bufferline.nvim",
         version = "*",
@@ -106,7 +161,55 @@ return {
         end,
     },
 
-    -- Indents
+    {
+        "nvim-lualine/lualine.nvim",
+        event = "VeryLazy",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        opts = function()
+            return require("plugins.opts.lualine")
+        end,
+    },
+
+    {
+        "nvim-neo-tree/neo-tree.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-tree/nvim-web-devicons",
+            "MunifTanjim/nui.nvim",
+            "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+            {
+                "s1n7ax/nvim-window-picker",
+                version = "2.*",
+                config = function()
+                    require("window-picker").setup({
+                        filter_rules = {
+                            include_current_win = false,
+                            autoselect_one = true,
+                            bo = {
+                                filetype = { "neo-tree", "neo-tree-popup", "notify" },
+                                buftype = { "terminal", "quickfix" },
+                            },
+                        },
+                    })
+                end,
+            },
+        },
+        opts = function()
+            return require("plugins.opts.neotree")
+        end,
+    },
+
+    { "mbbill/undotree", lazy = false },
+
+    {
+        "stevearc/aerial.nvim",
+        opts = {},
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+            "nvim-tree/nvim-web-devicons",
+        },
+    },
+
     {
         "lukas-reineke/indent-blankline.nvim",
         main = "ibl",
@@ -122,39 +225,40 @@ return {
         end,
     },
 
-    -- Completion
+    -- ╭───────────╮
+    -- │ Telescope │
+    -- ╰───────────╯
     {
-        "hrsh7th/nvim-cmp",
-        dependencies = { "hrsh7th/cmp-emoji" },
+        "nvim-telescope/telescope.nvim",
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+            { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+            {
+                "isak102/telescope-git-file-history.nvim",
+                dependencies = {
+                    "nvim-lua/plenary.nvim",
+                    "tpope/vim-fugitive",
+                },
+            },
+        },
+        cmd = "Telescope",
         opts = function()
-            return require("plugins.opts.cmp")
+            return require("plugins.opts.telescope")
+        end,
+        config = function(_, opts)
+            local telescope = require("telescope")
+            telescope.setup(opts)
+
+            -- load extensions
+            for _, ext in ipairs(opts.extensions_list) do
+                telescope.load_extension(ext)
+            end
         end,
     },
-    "hrsh7th/cmp-buffer",
-    "hrsh7th/cmp-emoji",
-    "hrsh7th/cmp-nvim-lsp",
-    "hrsh7th/cmp-cmdline",
-    "hrsh7th/cmp-path",
 
-    -- Format
-    {
-        "stevearc/conform.nvim",
-        opts = function()
-            return require("plugins.opts.conformFormat")
-        end,
-    },
-
-    -- LINE
-    {
-        "nvim-lualine/lualine.nvim",
-        event = "VeryLazy",
-        dependencies = { "nvim-tree/nvim-web-devicons" },
-        opts = function()
-            return require("plugins.opts.lualine")
-        end,
-    },
-
-    -- Enhance find functions (f, t, F, T)
+    -- ╭────────────╮
+    -- │ Navigation │
+    -- ╰────────────╯
     {
         "folke/flash.nvim",
         event = "VeryLazy",
@@ -203,72 +307,9 @@ return {
         },
     },
 
-    -- GIT
-    {
-        "lewis6991/gitsigns.nvim",
-        opts = function()
-            return require("plugins.opts.gitsigns")
-        end,
-    },
-    {
-        "kdheepak/lazygit.nvim",
-        cmd = {
-            "LazyGit",
-            "LazyGitConfig",
-            "LazyGitCurrentFile",
-            "LazyGitFilter",
-            "LazyGitFilterCurrentFile",
-        },
-        -- optional for floating window border decoration
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-        },
-        -- setting the keybinding for LazyGit with 'keys' is recommended in
-        -- order to load the plugin when the command is run for the first time
-        keys = {
-            { "<leader>glg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
-        },
-    },
-    {
-        "sindrets/diffview.nvim",
-        lazy = false,
-    },
-
-    -- File tree
-    {
-        "nvim-neo-tree/neo-tree.nvim",
-        branch = "v3.x", -- TODO: remove
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-            "MunifTanjim/nui.nvim",
-            -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
-            {
-                "s1n7ax/nvim-window-picker",
-                version = "2.*",
-                config = function()
-                    require("window-picker").setup({
-                        filter_rules = {
-                            include_current_win = false,
-                            autoselect_one = true,
-                            -- filter using buffer options
-                            bo = {
-                                -- if the file type is one of following, the window will be ignored
-                                filetype = { "neo-tree", "neo-tree-popup", "notify" },
-                                -- if the buffer type is one of following, the window will be ignored
-                                buftype = { "terminal", "quickfix" },
-                            },
-                        },
-                    })
-                end,
-            },
-        },
-        opts = function()
-            return require("plugins.opts.neotree")
-        end,
-    },
-
-    -- Style
+    -- ╭─────────╮
+    -- │ Styling │
+    -- ╰─────────╯
     {
         "folke/noice.nvim",
         event = "VeryLazy",
@@ -282,12 +323,16 @@ return {
         end,
     },
 
-    -- Lint
     {
-        "mfussenegger/nvim-lint",
+        "norcalli/nvim-colorizer.lua",
+        config = function()
+            require("colorizer").setup({})
+        end,
     },
 
-    -- Notify
+    -- ╭───────────────╮
+    -- │ Notifications │
+    -- ╰───────────────╯
     {
         "rcarriga/nvim-notify",
         opts = function()
@@ -295,50 +340,36 @@ return {
         end,
     },
 
-    -- Text insights
+    -- ╭──────────╮
+    -- │ Sessions │
+    -- ╰──────────╯
     {
-        "folke/trouble.nvim",
-        -- opts will be merged with the parent spec
-        opts = { use_diagnostic_signs = true },
-    },
 
-    {
-        "nvim-telescope/telescope.nvim",
+        "rmagatti/auto-session",
         dependencies = {
-            "nvim-treesitter/nvim-treesitter",
-            { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+            "nvim-telescope/telescope.nvim",
         },
-        cmd = "Telescope",
         opts = function()
-            return require("plugins.opts.telescope")
+            return require("plugins.opts.autosession")
         end,
-        config = function(_, opts)
-            local telescope = require("telescope")
-            telescope.setup(opts)
-
-            -- load extensions
-            for _, ext in ipairs(opts.extensions_list) do
-                telescope.load_extension(ext)
-            end
-        end,
+        lazy = false,
     },
 
+    -- ╭───────────╮
+    -- │ Terminals │
+    -- ╰───────────╯
     {
-        "numToStr/Comment.nvim",
-        keys = {
-            { "gcc", mode = "n", desc = "Comment toggle current line" },
-            { "gc", mode = { "n", "o" }, desc = "Comment toggle linewise" },
-            { "gc", mode = "x", desc = "Comment toggle linewise (visual)" },
-            { "gbc", mode = "n", desc = "Comment toggle current block" },
-            { "gb", mode = { "n", "o" }, desc = "Comment toggle blockwise" },
-            { "gb", mode = "x", desc = "Comment toggle blockwise (visual)" },
-        },
-        config = function(_, opts)
-            require("Comment").setup(opts)
+        "akinsho/toggleterm.nvim",
+        lazy = false,
+        version = "*",
+        opts = function()
+            return require("plugins.opts.toggleterm")
         end,
     },
 
-    -- Markdown preview
+    -- ╭──────────╮
+    -- │ Previews │
+    -- ╰──────────╯
     {
         "toppair/peek.nvim",
         event = { "VeryLazy" },
@@ -368,48 +399,6 @@ return {
         end,
     },
 
-    {
-
-        "rmagatti/auto-session",
-        dependencies = {
-            "nvim-telescope/telescope.nvim",
-        },
-        opts = function()
-            return require("plugins.opts.autosession")
-        end,
-        lazy = false,
-    },
-
-    { "mbbill/undotree", lazy = false },
-
-    -- Map of file elements
-    {
-        "stevearc/aerial.nvim",
-        opts = {},
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter",
-            "nvim-tree/nvim-web-devicons",
-        },
-    },
-
-    -- Color highlighter
-    {
-        "norcalli/nvim-colorizer.lua",
-        config = function()
-            require("colorizer").setup({})
-        end,
-    },
-
-    -- Terminals
-    {
-        "akinsho/toggleterm.nvim",
-        lazy = false,
-        version = "*",
-        opts = function()
-            return require("plugins.opts.toggleterm")
-        end,
-    },
-
     -- OPTIONAL --
     --------------
     -- Mini map
@@ -423,4 +412,8 @@ return {
     -- require('mini.map').open()
     -- IA with codium
     -- "Exafunction/codeium.vim",
+    -- Lint
+    -- {
+    --     "mfussenegger/nvim-lint",
+    -- },
 }
