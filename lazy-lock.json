@@ -2,7 +2,6 @@
   "Comment.nvim": { "branch": "master", "commit": "e30b7f2008e52442154b66f7c519bfd2f1e32acb" },
   "LazyVim": { "branch": "main", "commit": "13a4a84e3485a36e64055365665a45dc82b6bf71" },
   "LuaSnip": { "branch": "master", "commit": "03c8e67eb7293c404845b3982db895d59c0d1538" },
-  "VimCleanColors": { "branch": "master", "commit": "efdbd5f74dbda3ea7f362afa5584331c795feb62" },
   "aerial.nvim": { "branch": "master", "commit": "60a784614acb1d7695bd9ae0fee8ada1bf7b0c28" },
   "auto-session": { "branch": "main", "commit": "3cd531ce4d46fb156268ddedf5f3e6822ef26af7" },
   "blueprints": { "branch": "main", "commit": "e5825c30464f98e77e8b5ffb88d59fd98df6c802" },
@@ -63,10 +62,9 @@
   "tokyonight.nvim": { "branch": "main", "commit": "4867d10ead04e69872b24818d0d306539305cf87" },
   "trouble.nvim": { "branch": "main", "commit": "e45a7cb618ed4e84b28d7478c7db60bad9e142c2" },
   "ts-comments.nvim": { "branch": "main", "commit": "2002692ad1d3f6518d016550c20c2a890f0cbf0e" },
-  "typescript.nvim": { "branch": "main", "commit": "4de85ef699d7e6010528dcfbddc2ed4c2c421467" },
+  "typescript-tools.nvim": { "branch": "master", "commit": "f8c2e0b36b651c85f52ad5c5373ff8b07adc15a7" },
   "undotree": { "branch": "master", "commit": "78b5241191852ffa9bb5da5ff2ee033160798c3b" },
   "vim-flog": { "branch": "master", "commit": "6f80c1ffa7068ca8cc0e29af7af4f6ed0717e65e" },
   "vim-fugitive": { "branch": "master", "commit": "d4877e54cef67f5af4f950935b1ade19ed6b7370" },
-  "vim-lucius": { "branch": "master", "commit": "b5dea9864ae64714da4635993ad2fc2703e7c832" },
   "which-key.nvim": { "branch": "main", "commit": "8badb359f7ab8711e2575ef75dfe6fbbd87e4821" }
 }

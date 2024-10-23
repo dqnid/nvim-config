@@ -2,10 +2,10 @@ local options = {
     ensure_installed = {
         "stylua",
         "shfmt",
-        "lua-language-server lua_ls",
+        -- "lua-language-server lua_ls",
         "clang-format",
         "clangd",
-        "css-lsp cssls",
+        -- "css-lsp cssls",
         "deno denols",
         "emmet-language-server emmet_language_server",
         "flake8",
