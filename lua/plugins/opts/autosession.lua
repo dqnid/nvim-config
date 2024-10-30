@@ -1,7 +1,7 @@
 local options = {
     auto_session_enabled = true,
-    auto_save_enabled = true,
-    auto_restore_enabled = true,
+    auto_save_enabled = false,
+    auto_restore_enabled = false,
     auto_session_use_git_branch = true,
     log_level = "error",
     auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
