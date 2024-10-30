@@ -2,9 +2,17 @@ return {
     -- ╭────────╮
     -- │ Themes │
     -- ╰────────╯
-    { "kvrohit/rasmus.nvim" },
+    "kvrohit/rasmus.nvim",
     "gmr458/cold.nvim",
     "shaunsingh/nord.nvim",
+    {
+        "navarasu/onedark.nvim",
+        opts = {
+            style = "cool", -- 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
+            transparent = false,
+            term_colors = true,
+        },
+    },
 
     -- ╭─────────╮
     -- │ LazyVim │
