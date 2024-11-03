@@ -8,5 +8,8 @@ vim.cmd("set wrap")
 vim.cmd("set linebreak")
 vim.cmd("set colorcolumn=85")
 vim.cmd("set conceallevel=0") -- DONT hide characters in MD
+vim.cmd("set tabstop=4")
+vim.cmd("set shiftwidth=4")
+vim.cmd("set expandtab")
 
 --vim.cmd("CodeiumDisable")
