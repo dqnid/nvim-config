@@ -49,6 +49,7 @@ return {
         dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
         opts = {},
     },
+    "simrat39/rust-tools.nvim",
 
     -- ╭──────────────────────────╮
     -- │ TreeSitter - Code parser │
