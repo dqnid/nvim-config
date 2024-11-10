@@ -19,6 +19,9 @@ local options = {
         "styled",
         "vim",
         "yaml",
+        "rust",
+        "ruby",
+        "c",
     },
 
     highlight = {

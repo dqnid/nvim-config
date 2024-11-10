@@ -8,7 +8,7 @@ return {
     {
         "navarasu/onedark.nvim",
         opts = {
-            style = "cool", -- 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
+            style = "warm", -- 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
             transparent = false,
             term_colors = true,
         },
@@ -20,7 +20,7 @@ return {
     {
         "LazyVim/LazyVim",
         opts = {
-            colorscheme = "rasmus",
+            colorscheme = "onedark",
         },
     },
     { import = "lazyvim.plugins.extras.ui.mini-starter" },
@@ -49,7 +49,60 @@ return {
         dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
         opts = {},
     },
-    "simrat39/rust-tools.nvim",
+    -- RUST
+    {
+        "simrat39/rust-tools.nvim",
+        config = function()
+            local rt = require("rust-tools")
+            local mason_registry = require("mason-registry")
+
+            local codelldb = mason_registry.get_package("codelldb")
+            local extension_path = codelldb:get_install_path() .. "/extension/"
+            local codelldb_path = extension_path .. "adapter/codelldb"
+            local liblldb_path = extension_path .. "lldb/lib/liblldb.dylib"
+
+            rt.setup({
+                dap = {
+                    adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
+                },
+                server = {
+                    capabilities = require("cmp_nvim_lsp").default_capabilities(),
+                },
+            })
+        end,
+    },
+    {
+        "mrcjkb/rustaceanvim",
+        version = "^5",
+        lazy = false,
+    },
+
+    -- ╭───────────╮
+    -- │ Debugging │
+    -- ╰───────────╯
+    {
+        "mfussenegger/nvim-dap",
+        config = function()
+            local dap, dapui = require("dap"), require("dapui")
+            dapui.setup()
+            dap.listeners.before.attach.dapui_config = function()
+                dapui.open()
+            end
+            dap.listeners.before.launch.dapui_config = function()
+                dapui.open()
+            end
+            dap.listeners.before.event_terminated.dapui_config = function()
+                dapui.close()
+            end
+            dap.listeners.before.event_exited.dapui_config = function()
+                dapui.close()
+            end
+        end,
+    },
+    {
+        "rcarriga/nvim-dap-ui",
+        dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
+    },
 
     -- ╭──────────────────────────╮
     -- │ TreeSitter - Code parser │
