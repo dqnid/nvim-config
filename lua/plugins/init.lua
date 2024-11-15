@@ -6,6 +6,23 @@ return {
     "gmr458/cold.nvim",
     "shaunsingh/nord.nvim",
     {
+        "daschw/leaf.nvim",
+        opts = {
+            underlineStyle = "underline",
+            commentStyle = "italic",
+            functionStyle = "NONE",
+            keywordStyle = "italic",
+            statementStyle = "bold",
+            typeStyle = "NONE",
+            variablebuiltinStyle = "italic",
+            transparent = false,
+            colors = {},
+            overrides = {},
+            theme = "light", -- default, based on vim.o.background, alternatives: "light", "dark"
+            contrast = "low", -- default, alternatives: "medium", "high"
+        },
+    },
+    {
         "navarasu/onedark.nvim",
         opts = {
             style = "warm", -- 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
@@ -20,7 +37,7 @@ return {
     {
         "LazyVim/LazyVim",
         opts = {
-            colorscheme = "onedark",
+            colorscheme = "leaf",
         },
     },
     { import = "lazyvim.plugins.extras.ui.mini-starter" },
@@ -466,27 +483,6 @@ return {
         end,
     },
 
-    -- ╭──────────╮
-    -- │ Obsidian │
-    -- ╰──────────╯
-    {
-        "epwalsh/obsidian.nvim",
-        version = "*", -- recommended, use latest release instead of latest commit
-        lazy = true,
-        ft = "markdown",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-        },
-        opts = {
-            workspaces = {
-                {
-                    name = "default",
-                    path = "~/Remote/Cloud/Documents/notes/md",
-                },
-            },
-        },
-    },
-
     -- OPTIONAL --
     --------------
     -- Mini map
@@ -503,5 +499,25 @@ return {
     -- Lint
     -- {
     --     "mfussenegger/nvim-lint",
+    -- },
+    -- ╭──────────╮
+    -- │ Obsidian │
+    -- ╰──────────╯
+    -- {
+    --     "epwalsh/obsidian.nvim",
+    --     version = "*", -- recommended, use latest release instead of latest commit
+    --     lazy = true,
+    --     ft = "markdown",
+    --     dependencies = {
+    --         "nvim-lua/plenary.nvim",
+    --     },
+    --     opts = {
+    --         workspaces = {
+    --             {
+    --                 name = "default",
+    --                 path = "~/Remote/Cloud/Documents/notes/md",
+    --             },
+    --         },
+    --     },
     -- },
 }
