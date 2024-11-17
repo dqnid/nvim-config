@@ -19,8 +19,23 @@ return {
             colors = {},
             overrides = {},
             theme = "light", -- default, based on vim.o.background, alternatives: "light", "dark"
-            contrast = "low", -- default, alternatives: "medium", "high"
+            contrast = "medium", -- default, alternatives: "medium", "high"
         },
+    },
+    {
+        "maxmx03/solarized.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {
+            palette = "solarized", -- solarized (default) | selenized
+            variant = "winter", -- "spring" | "summer" | "autumn" | "winter" (default)
+        },
+        config = function(_, opts)
+            vim.o.termguicolors = true
+            vim.o.background = "light"
+            require("solarized").setup(opts)
+            vim.cmd.colorscheme("solarized")
+        end,
     },
     {
         "navarasu/onedark.nvim",
@@ -37,7 +52,7 @@ return {
     {
         "LazyVim/LazyVim",
         opts = {
-            colorscheme = "leaf",
+            -- colorscheme = "rasmus",
         },
     },
     { import = "lazyvim.plugins.extras.ui.mini-starter" },
@@ -482,6 +497,8 @@ return {
             vim.api.nvim_create_user_command("MarkdownPreviewClose", require("peek").close, {})
         end,
     },
+
+    "ThePrimeagen/vim-be-good",
 
     -- OPTIONAL --
     --------------
