@@ -3,46 +3,13 @@ return {
     -- │ Themes │
     -- ╰────────╯
     "kvrohit/rasmus.nvim",
-    "gmr458/cold.nvim",
     "shaunsingh/nord.nvim",
     {
-        "daschw/leaf.nvim",
+        dir = "~/Documents/Proyectos/neovim-theme",
+        name = "rose-pine",
         opts = {
-            underlineStyle = "underline",
-            commentStyle = "italic",
-            functionStyle = "NONE",
-            keywordStyle = "italic",
-            statementStyle = "bold",
-            typeStyle = "NONE",
-            variablebuiltinStyle = "italic",
-            transparent = false,
-            colors = {},
-            overrides = {},
-            theme = "light", -- default, based on vim.o.background, alternatives: "light", "dark"
-            contrast = "medium", -- default, alternatives: "medium", "high"
-        },
-    },
-    {
-        "maxmx03/solarized.nvim",
-        lazy = false,
-        priority = 1000,
-        opts = {
-            palette = "solarized", -- solarized (default) | selenized
-            variant = "winter", -- "spring" | "summer" | "autumn" | "winter" (default)
-        },
-        config = function(_, opts)
-            vim.o.termguicolors = true
-            vim.o.background = "light"
-            require("solarized").setup(opts)
-            vim.cmd.colorscheme("solarized")
-        end,
-    },
-    {
-        "navarasu/onedark.nvim",
-        opts = {
-            style = "warm", -- 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
-            transparent = false,
-            term_colors = true,
+            variant = "dqnid", -- auto, main, moon, or dawn
+            dark_variant = "dqnid", -- main, moon, or dawn
         },
     },
 
@@ -52,7 +19,7 @@ return {
     {
         "LazyVim/LazyVim",
         opts = {
-            -- colorscheme = "rasmus",
+            colorscheme = "rose-pine",
         },
     },
     { import = "lazyvim.plugins.extras.ui.mini-starter" },
@@ -97,9 +64,9 @@ return {
                 dap = {
                     adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
                 },
-                server = {
-                    capabilities = require("cmp_nvim_lsp").default_capabilities(),
-                },
+                -- server = {
+                --     capabilities = require("cmp_nvim_lsp").default_capabilities(),
+                -- },
             })
         end,
     },
@@ -208,16 +175,18 @@ return {
     },
     {
         "hrsh7th/nvim-cmp",
-        dependencies = { "hrsh7th/cmp-emoji" },
+        dependencies = {
+            "hrsh7th/cmp-emoji",
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-emoji",
+            "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-cmdline",
+            "hrsh7th/cmp-path",
+        },
         opts = function()
             return require("plugins.opts.cmp")
         end,
     },
-    "hrsh7th/cmp-buffer",
-    "hrsh7th/cmp-emoji",
-    "hrsh7th/cmp-nvim-lsp",
-    "hrsh7th/cmp-cmdline",
-    "hrsh7th/cmp-path",
     {
         "dqnid/nvim-blueprints",
         name = "blueprints",
@@ -402,6 +371,24 @@ return {
                     require("flash").toggle()
                 end,
                 desc = "Toggle Flash Search",
+            },
+        },
+    },
+
+    -- ╭──────────╮
+    -- │ WhichKey │
+    -- ╰──────────╯
+    {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+        opts = {},
+        keys = {
+            {
+                "<leader>?",
+                function()
+                    require("which-key").show({ global = false })
+                end,
+                desc = "Buffer Local Keymaps (which-key)",
             },
         },
     },
