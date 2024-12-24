@@ -43,7 +43,7 @@ local config = {
         offsets = {
             {
                 filetype = "neo-tree",
-                text = "Files",
+                text = "",
                 highlight = "Directory",
                 separator = true, -- use a "true" to enable the default, or set your own character
             },

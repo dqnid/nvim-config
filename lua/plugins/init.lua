@@ -3,7 +3,6 @@ return {
     -- │ Themes │
     -- ╰────────╯
     "kvrohit/rasmus.nvim",
-    "shaunsingh/nord.nvim",
     {
         dir = "~/Documents/Proyectos/neovim-theme",
         name = "rose-pine",
@@ -22,7 +21,7 @@ return {
             colorscheme = "rose-pine",
         },
     },
-    { import = "lazyvim.plugins.extras.ui.mini-starter" },
+    -- { import = "lazyvim.plugins.extras.ui.mini-starter" },
 
     -- ╭─────╮
     -- │ LSP │
@@ -64,9 +63,9 @@ return {
                 dap = {
                     adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
                 },
-                -- server = {
-                --     capabilities = require("cmp_nvim_lsp").default_capabilities(),
-                -- },
+                server = {
+                    capabilities = require("cmp_nvim_lsp").default_capabilities(),
+                },
             })
         end,
     },
@@ -163,18 +162,16 @@ return {
     -- ╭──────────────────╮
     -- │ Completion Utils │
     -- ╰──────────────────╯
+    -- Blink is instaled by default by LazyVim
+    -- NOTE: Reason to choose nvim-cmp over blick:
+    --  blink tends to create a snap lag while typing
     {
-        "L3MON4D3/LuaSnip",
-        version = "v2.*",
-        -- install jsregexp (optional!).
-        build = "make install_jsregexp",
-        dependencies = { "rafamadriz/friendly-snippets" },
-        config = function()
-            require("luasnip.loaders.from_vscode").load({})
-        end,
+        "blink.cmp",
+        enabled = false,
     },
     {
         "hrsh7th/nvim-cmp",
+        enabled = true,
         dependencies = {
             "hrsh7th/cmp-emoji",
             "hrsh7th/cmp-buffer",
@@ -187,6 +184,21 @@ return {
             return require("plugins.opts.cmp")
         end,
     },
+    {
+        "L3MON4D3/LuaSnip",
+        build = "make install_jsregexp",
+        dependencies = { "rafamadriz/friendly-snippets" },
+    },
+    {
+        "saadparwaiz1/cmp_luasnip",
+        dependencies = {
+            "hrsh7th/nvim-cmp",
+        },
+    },
+
+    -- ╭────────────╮
+    -- │ Blueprints │
+    -- ╰────────────╯
     {
         "dqnid/nvim-blueprints",
         name = "blueprints",
@@ -207,14 +219,6 @@ return {
     {
         "sindrets/diffview.nvim",
         lazy = false,
-    },
-    {
-        "rbong/vim-flog",
-        lazy = true,
-        cmd = { "Flog", "Flogsplit", "Floggit" },
-        dependencies = {
-            "tpope/vim-fugitive",
-        },
     },
 
     -- ╭─────────╮
@@ -266,8 +270,6 @@ return {
             return require("plugins.opts.neotree")
         end,
     },
-
-    { "mbbill/undotree", lazy = false },
 
     {
         "stevearc/aerial.nvim",
@@ -419,12 +421,12 @@ return {
     -- ╭───────────────╮
     -- │ Notifications │
     -- ╰───────────────╯
-    {
-        "rcarriga/nvim-notify",
-        opts = function()
-            return require("plugins.opts.notify")
-        end,
-    },
+    -- {
+    --     "rcarriga/nvim-notify",
+    --     opts = function()
+    --         return require("plugins.opts.notify")
+    --     end,
+    -- },
 
     -- ╭──────────╮
     -- │ Sessions │
@@ -485,10 +487,10 @@ return {
         end,
     },
 
-    "ThePrimeagen/vim-be-good",
-
     -- OPTIONAL --
     --------------
+    -- "ThePrimeagen/vim-be-good",
+    -- { "mbbill/undotree", lazy = false },
     -- Mini map
     -- {
     --     "echasnovski/mini.map",
@@ -503,6 +505,15 @@ return {
     -- Lint
     -- {
     --     "mfussenegger/nvim-lint",
+    -- },
+    -- Vim flog utility
+    -- {
+    --     "rbong/vim-flog",
+    --     lazy = true,
+    --     cmd = { "Flog", "Flogsplit", "Floggit" },
+    --     dependencies = {
+    --         "tpope/vim-fugitive",
+    --     },
     -- },
     -- ╭──────────╮
     -- │ Obsidian │

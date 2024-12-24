@@ -152,6 +152,15 @@ map("n", "<Leader>cdt", ":DapToggleBreakpoint<CR>")
 map("n", "<Leader>cdx", ":DapTerminate<CR>")
 map("n", "<Leader>cdo", ":DapStepOver<CR>")
 
+---- Completion ----
+-- map({ "i", "s" }, "<Tab>", function()
+--     if require("cmp").visible() then
+--         require("nvim-cmp").select_next_item()
+--     elseif require("luasnip").expand_or_jumpable() then
+--         vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
+--     end
+-- end, { desc = "Next completion item" })
+
 ---- Telescope find ----
 
 map("n", "<leader>ff", "<cmd> Telescope find_files <CR>", { desc = "Find files" })
