@@ -30,6 +30,9 @@ map("n", "<leader>bD", "<cmd>:bd<cr>", { desc = "Delete Buffer and Window" })
 -- Treesitter context
 map("n", "<leader>tc", "<cmd>TSContextToggle<CR>", { desc = "Toggle treesitter context" })
 
+-- Regex search and replace
+map("n", "<leader>fs", "<cmd>GrugFar<CR>", { desc = "Search all with replace option" })
+
 -- Blueprints
 map("n", "<leader>ct", "<cmd>lua require('blueprints').createFromTemplateTelescope()<CR>", { desc = "Nvim blueprints" })
 
