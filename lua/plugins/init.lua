@@ -443,6 +443,11 @@ return {
         lazy = false,
     },
 
+    -- ╭────────────────╮
+    -- │ Center windows │
+    -- ╰────────────────╯
+    { "shortcuts/no-neck-pain.nvim", version = "*" },
+
     -- ╭───────────╮
     -- │ Terminals │
     -- ╰───────────╯
