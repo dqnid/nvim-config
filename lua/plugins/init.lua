@@ -4,7 +4,8 @@ return {
     -- ╰────────╯
     "kvrohit/rasmus.nvim",
     {
-        dir = "~/Documents/Proyectos/neovim-theme",
+        -- dir = "~/Documents/Proyectos/neovim-theme",
+        "dqnid/plain-colors.nvim",
         name = "rose-pine",
         opts = {
             variant = "dqnid", -- auto, main, moon, or dawn
