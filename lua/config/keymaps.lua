@@ -223,6 +223,7 @@ map("v", ">", ">gv")
 
 -- new file
 map("n", "<leader>nf", "<cmd>enew<cr>", { desc = "New File" })
+map("n", "<C-t>", "<cmd>enew<cr>", { desc = "New File" })
 
 map("n", "[q", vim.cmd.cprev, { desc = "Previous Quickfix" })
 map("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })
