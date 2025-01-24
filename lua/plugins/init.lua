@@ -6,9 +6,10 @@ return {
     {
         -- dir = "~/Documents/Proyectos/neovim-theme",
         "dqnid/plain-colors.nvim",
+        -- dir = "~/Documents/Proyectos/Training/plain-colors.nvim",
         name = "rose-pine",
         opts = {
-            variant = "dqnid", -- auto, main, moon, or dawn
+            variant = "light", -- auto, main, moon, or dawn
             dark_variant = "dqnid", -- main, moon, or dawn
         },
     },

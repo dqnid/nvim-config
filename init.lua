@@ -13,4 +13,11 @@ vim.cmd("set expandtab")
 vim.cmd("set wrap")
 vim.lsp.inlay_hint.enable(false)
 
+vim.opt.fillchars = {
+    horiz = "━",
+    vert = "▏",
+    stl = " ",
+    eob = " ",
+}
+
 --vim.cmd("CodeiumDisable")
