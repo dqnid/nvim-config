@@ -9,7 +9,7 @@ return {
         -- dir = "~/Documents/Proyectos/Training/plain-colors.nvim",
         name = "rose-pine",
         opts = {
-            variant = "light", -- auto, main, moon, or dawn
+            variant = "dqnid", -- light, dqnid
             dark_variant = "dqnid", -- main, moon, or dawn
         },
     },
@@ -23,6 +23,7 @@ return {
             colorscheme = "rose-pine",
         },
     },
+
     -- { import = "lazyvim.plugins.extras.ui.mini-starter" },
 
     -- ╭─────╮
@@ -62,6 +63,20 @@ return {
             local liblldb_path = extension_path .. "lldb/lib/liblldb.dylib"
 
             rt.setup({
+                tools = {
+                    inlay_hints = {
+                        auto = false,
+                        only_current_line = false,
+                        show_parameter_hints = true,
+                        parameter_hints_prefix = "<- ",
+                        other_hints_prefix = "=> ",
+                        max_len_align = false,
+                        max_len_align_padding = 1,
+                        right_align = false,
+                        right_align_padding = 7,
+                        highlight = "Comment",
+                    },
+                },
                 dap = {
                     adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
                 },
@@ -71,11 +86,11 @@ return {
             })
         end,
     },
-    {
-        "mrcjkb/rustaceanvim",
-        version = "^5",
-        lazy = false,
-    },
+    -- {
+    --     "mrcjkb/rustaceanvim",
+    --     version = "^5",
+    --     lazy = false,
+    -- },
 
     -- ╭───────────╮
     -- │ Debugging │
