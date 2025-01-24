@@ -12,4 +12,11 @@ vim.cmd("set shiftwidth=4")
 vim.cmd("set expandtab")
 vim.cmd("set wrap")
 
+vim.opt.fillchars = {
+    horiz = "━",
+    vert = "▏",
+    stl = " ",
+    eob = " ",
+}
+
 --vim.cmd("CodeiumDisable")
