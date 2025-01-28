@@ -13,6 +13,7 @@ vim.cmd("set expandtab")
 vim.cmd("set wrap")
 vim.lsp.inlay_hint.enable(false)
 
+-- Separators
 vim.opt.fillchars = {
     horiz = "━",
     vert = "▏",

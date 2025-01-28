@@ -9,7 +9,7 @@ return {
         -- dir = "~/Documents/Proyectos/Training/plain-colors.nvim",
         name = "rose-pine",
         opts = {
-            variant = "dqnid", -- light, dqnid
+            variant = "light", -- light, dqnid
             dark_variant = "dqnid", -- main, moon, or dawn
         },
     },
@@ -48,7 +48,16 @@ return {
     {
         "pmizio/typescript-tools.nvim",
         dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-        opts = {},
+        opts = {
+            settings = {
+                tsserver_plugins = {
+                    -- for TypeScript v4.9+
+                    "@styled/typescript-styled-plugin",
+                    -- or for older TypeScript versions
+                    -- "typescript-styled-plugin",
+                },
+            },
+        },
     },
     -- RUST
     {
