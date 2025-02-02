@@ -41,6 +41,15 @@ local config = {
             -- lua = false, -- to disable a format, set to `false`
         },
     },
+    notify = {
+        -- Noice can be used as `vim.notify` so you can route any notification like other messages
+        -- Notification messages have their level and other properties set.
+        -- event is always "notify" and kind can be any log level as a string
+        -- The default routes will forward notifications to nvim-notify
+        -- Benefit of using Noice for this is the routing and consistent history view
+        enabled = false,
+        view = "notify",
+    },
     lsp = {
         -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
         override = {
@@ -57,15 +66,15 @@ local config = {
         lsp_doc_border = false, -- add a border to hover docs and signature help
     },
     routes = {
-    {view = "cmdline",filter = { event = "msg_showmode" }},
-      {
-        filter = {
-          event = "msg_show",
-          kind = "",
-          find = "written",
+        { view = "cmdline", filter = { event = "msg_showmode" } },
+        {
+            filter = {
+                event = "msg_show",
+                kind = "",
+                find = "written",
+            },
+            opts = { skip = true },
         },
-        opts = { skip = true },
-      },
     },
 }
 

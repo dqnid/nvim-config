@@ -2,14 +2,13 @@ return {
     -- ╭────────╮
     -- │ Themes │
     -- ╰────────╯
-    "kvrohit/rasmus.nvim",
     {
         -- dir = "~/Documents/Proyectos/neovim-theme",
         "dqnid/plain-colors.nvim",
         -- dir = "~/Documents/Proyectos/Training/plain-colors.nvim",
         name = "rose-pine",
         opts = {
-            variant = "light", -- light, dqnid
+            variant = "dqnid", -- light, dqnid
             dark_variant = "dqnid", -- main, moon, or dawn
         },
     },
@@ -392,14 +391,6 @@ return {
                 end,
                 desc = "Treesitter Search",
             },
-            {
-                "<c-s>",
-                mode = { "c" },
-                function()
-                    require("flash").toggle()
-                end,
-                desc = "Toggle Flash Search",
-            },
         },
     },
 
@@ -447,12 +438,13 @@ return {
     -- ╭───────────────╮
     -- │ Notifications │
     -- ╰───────────────╯
-    -- {
-    --     "rcarriga/nvim-notify",
-    --     opts = function()
-    --         return require("plugins.opts.notify")
-    --     end,
-    -- },
+    {
+        "rcarriga/nvim-notify",
+        enabled = false,
+        -- opts = function()
+        --     return require("plugins.opts.notify")
+        -- end,
+    },
 
     -- ╭──────────╮
     -- │ Sessions │
@@ -473,50 +465,6 @@ return {
     -- │ Center windows │
     -- ╰────────────────╯
     { "shortcuts/no-neck-pain.nvim", version = "*" },
-
-    -- ╭───────────╮
-    -- │ Terminals │
-    -- ╰───────────╯
-    {
-        "akinsho/toggleterm.nvim",
-        lazy = false,
-        version = "*",
-        opts = function()
-            return require("plugins.opts.toggleterm")
-        end,
-    },
-
-    -- ╭──────────╮
-    -- │ Previews │
-    -- ╰──────────╯
-    {
-        "toppair/peek.nvim",
-        event = { "VeryLazy" },
-        build = "deno task --quiet build:fast",
-        config = function()
-            require("peek").setup({
-                auto_load = true,
-                close_on_bdelete = true, -- close preview window on buffer delete
-
-                theme = "dark", -- 'dark' or 'light'
-
-                update_on_change = true,
-
-                app = { "chromium", "--new-window" },
-
-                filetype = { "markdown" },
-
-                -- relevant if update_on_change is true
-                throttle_at = 200000, -- start throttling when file exceeds this
-                -- amount of bytes in size
-                throttle_time = "auto",
-            })
-            vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
-            vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
-            vim.api.nvim_create_user_command("MarkdownPreviewOpen", require("peek").open, {})
-            vim.api.nvim_create_user_command("MarkdownPreviewClose", require("peek").close, {})
-        end,
-    },
 
     -- OPTIONAL --
     --------------
@@ -545,6 +493,48 @@ return {
     --     dependencies = {
     --         "tpope/vim-fugitive",
     --     },
+    -- },
+    -- ╭───────────╮
+    -- │ Terminals │
+    -- ╰───────────╯
+    -- {
+    --     "akinsho/toggleterm.nvim",
+    --     lazy = false,
+    --     version = "*",
+    --     opts = function()
+    --         return require("plugins.opts.toggleterm")
+    --     end,
+    -- },
+    -- ╭──────────╮
+    -- │ Previews │
+    -- ╰──────────╯
+    -- {
+    --     "toppair/peek.nvim",
+    --     event = { "VeryLazy" },
+    --     build = "deno task --quiet build:fast",
+    --     config = function()
+    --         require("peek").setup({
+    --             auto_load = true,
+    --             close_on_bdelete = true, -- close preview window on buffer delete
+    --
+    --             theme = "dark", -- 'dark' or 'light'
+    --
+    --             update_on_change = true,
+    --
+    --             app = { "chromium", "--new-window" },
+    --
+    --             filetype = { "markdown" },
+    --
+    --             -- relevant if update_on_change is true
+    --             throttle_at = 200000, -- start throttling when file exceeds this
+    --             -- amount of bytes in size
+    --             throttle_time = "auto",
+    --         })
+    --         vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
+    --         vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
+    --         vim.api.nvim_create_user_command("MarkdownPreviewOpen", require("peek").open, {})
+    --         vim.api.nvim_create_user_command("MarkdownPreviewClose", require("peek").close, {})
+    --     end,
     -- },
     -- ╭──────────╮
     -- │ Obsidian │
