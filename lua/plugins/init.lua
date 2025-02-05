@@ -3,12 +3,12 @@ return {
     -- │ Themes │
     -- ╰────────╯
     {
-        -- dir = "~/Documents/Proyectos/neovim-theme",
         "dqnid/plain-colors.nvim",
+        -- dir = "~/Documents/Proyectos/neovim-theme",
         -- dir = "~/Documents/Proyectos/Training/plain-colors.nvim",
         name = "rose-pine",
         opts = {
-            variant = "dqnid", -- light, dqnid
+            variant = "light", -- light, dqnid
             dark_variant = "dqnid", -- main, moon, or dawn
         },
     },
