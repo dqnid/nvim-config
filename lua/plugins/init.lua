@@ -3,9 +3,9 @@ return {
     -- │ Themes │
     -- ╰────────╯
     {
-        "dqnid/plain-colors.nvim",
+        -- "dqnid/plain-colors.nvim",
         -- dir = "~/Documents/Proyectos/neovim-theme",
-        -- dir = "~/Documents/Proyectos/Training/plain-colors.nvim",
+        dir = "~/Documents/Proyectos/Training/plain-colors.nvim",
         name = "rose-pine",
         opts = {
             variant = "light", -- light, dqnid
@@ -257,6 +257,9 @@ return {
             return require("plugins.opts.bufferline")
         end,
     },
+
+    -- Separate buffers in tabs
+    { "tiagovla/scope.nvim", config = true },
 
     {
         "nvim-lualine/lualine.nvim",

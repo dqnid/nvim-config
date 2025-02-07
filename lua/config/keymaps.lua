@@ -23,7 +23,14 @@ end, { desc = "Delete Buffer" })
 map("n", "<leader>x", function()
     Snacks.bufdelete()
 end, { desc = "Delete Buffer" })
+map("n", "<C-x>", function()
+    Snacks.bufdelete()
+end, { desc = "Delete Buffer" })
 map("n", "<leader>bD", "<cmd>:bd<cr>", { desc = "Delete Buffer and Window" })
+-- tabpages
+map("n", "]<Tab>", "<cmd>:+tabnext<cr>", { desc = "Goes to the next tabpage" })
+map("n", "[<Tab>", "<cmd>:-tabnext<cr>", { desc = "Goes to the previous tabpage" })
+map("n", "<leader>nt", "<cmd>:tabnew<cr>", { desc = "Create new tabpage" })
 
 ---------------------------------------------------------------------------
 
@@ -305,17 +312,7 @@ map("n", "<leader>uI", "<cmd>InspectTree<cr>", { desc = "Inspect Tree" })
 
 ---- Terminal ----
 
-map("n", "<leader>tf", "<cmd>ToggleTerm direction=float name=floating<CR>", { desc = "Toggle floating terminal" })
-map("n", "<leader>z", "<cmd>ToggleTerm direction=float name=floating<CR>", { desc = "Toggle floating terminal" })
-
-map(
-    "n",
-    "<leader>ts",
-    "<cmd>ToggleTerm direction=horizontal name=horizontal<CR>",
-    { desc = "Toggle horizontal terminal" }
-)
-
-map("n", "<leader>tv", "<cmd>ToggleTerm direction=vertical name=vertical<CR>", { desc = "Toggle vertical terminal" })
+map("n", "<leader>nz", "<cmd>terminal<CR>", { desc = "Open new terminal" })
 
 -- Terminal Mappings
 map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
