@@ -5,11 +5,10 @@ return {
     {
         -- "dqnid/plain-colors.nvim",
         -- dir = "~/Documents/Proyectos/neovim-theme",
-        dir = "~/Documents/Proyectos/Training/plain-colors.nvim",
+        dir = "~/Documents/Code/plain-colors.nvim",
         name = "rose-pine",
         opts = {
-            variant = "light", -- light, dqnid
-            dark_variant = "dqnid", -- main, moon, or dawn
+            variant = "darker", -- dark, light, darker
         },
     },
 
@@ -23,13 +22,13 @@ return {
         },
     },
 
-    -- { import = "lazyvim.plugins.extras.ui.mini-starter" },
-
     -- ╭─────╮
     -- │ LSP │
     -- ╰─────╯
-    { "VonHeikemen/lsp-zero.nvim", branch = "v4.x" },
+    -- NOTE: DEPRECATED: Not required
+    -- { "VonHeikemen/lsp-zero.nvim", branch = "v4.x" },
 
+    -- Simply provides basic configs for the NVIM lsp client, nothing more than data
     {
         "neovim/nvim-lspconfig",
     },
@@ -44,20 +43,21 @@ return {
     {
         "williamboman/mason-lspconfig.nvim",
     },
-    {
-        "pmizio/typescript-tools.nvim",
-        dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-        opts = {
-            settings = {
-                tsserver_plugins = {
-                    -- for TypeScript v4.9+
-                    "@styled/typescript-styled-plugin",
-                    -- or for older TypeScript versions
-                    -- "typescript-styled-plugin",
-                },
-            },
-        },
-    },
+    -- NOTE: DEPRECATED: Not required
+    -- {
+    --     "pmizio/typescript-tools.nvim",
+    --     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    --     opts = {
+    --         settings = {
+    --             tsserver_plugins = {
+    --                 -- for TypeScript v4.9+
+    --                 "@styled/typescript-styled-plugin",
+    --                 -- or for older TypeScript versions
+    --                 -- "typescript-styled-plugin",
+    --             },
+    --         },
+    --     },
+    -- },
     -- RUST
     {
         "simrat39/rust-tools.nvim",
@@ -94,11 +94,6 @@ return {
             })
         end,
     },
-    -- {
-    --     "mrcjkb/rustaceanvim",
-    --     version = "^5",
-    --     lazy = false,
-    -- },
 
     -- ╭───────────╮
     -- │ Debugging │
@@ -140,7 +135,7 @@ return {
         end,
     },
     -- To test if TreeSitter is working
-    "nvim-treesitter/playground",
+    -- "nvim-treesitter/playground",
     {
         "nvim-treesitter/nvim-treesitter-context",
         opts = function()
@@ -188,7 +183,7 @@ return {
     -- │ Completion Utils │
     -- ╰──────────────────╯
     -- Blink is instaled by default by LazyVim
-    -- NOTE: Reason to choose nvim-cmp over blick:
+    -- NOTE: Reason to choose nvim-cmp over blink:
     --  blink tends to create a snap lag while typing
     {
         "blink.cmp",
@@ -378,40 +373,6 @@ return {
                 end,
                 desc = "Flash Treesitter",
             },
-            {
-                "r",
-                mode = "o",
-                function()
-                    require("flash").remote()
-                end,
-                desc = "Remote Flash",
-            },
-            {
-                "R",
-                mode = { "o", "x" },
-                function()
-                    require("flash").treesitter_search()
-                end,
-                desc = "Treesitter Search",
-            },
-        },
-    },
-
-    -- ╭──────────╮
-    -- │ WhichKey │
-    -- ╰──────────╯
-    {
-        "folke/which-key.nvim",
-        event = "VeryLazy",
-        opts = {},
-        keys = {
-            {
-                "<leader>?",
-                function()
-                    require("which-key").show({ global = false })
-                end,
-                desc = "Buffer Local Keymaps (which-key)",
-            },
         },
     },
 
@@ -436,6 +397,11 @@ return {
         config = function()
             require("colorizer").setup({})
         end,
+    },
+
+    {
+        "sphamba/smear-cursor.nvim",
+        opts = {},
     },
 
     -- ╭───────────────╮
@@ -469,7 +435,9 @@ return {
     -- ╰────────────────╯
     { "shortcuts/no-neck-pain.nvim", version = "*" },
 
-    -- OPTIONAL --
+    -- ╭──────────╮
+    -- │ OPTIONAL │
+    -- ╰──────────╯
     --------------
     -- "ThePrimeagen/vim-be-good",
     -- { "mbbill/undotree", lazy = false },
@@ -556,6 +524,23 @@ return {
     --                 name = "default",
     --                 path = "~/Remote/Cloud/Documents/notes/md",
     --             },
+    --         },
+    --     },
+    -- },
+    -- ╭──────────╮
+    -- │ WhichKey │
+    -- ╰──────────╯
+    -- {
+    --     "folke/which-key.nvim",
+    --     event = "VeryLazy",
+    --     opts = {},
+    --     keys = {
+    --         {
+    --             "<leader>?",
+    --             function()
+    --                 require("which-key").show({ global = false })
+    --             end,
+    --             desc = "Buffer Local Keymaps (which-key)",
     --         },
     --     },
     -- },
