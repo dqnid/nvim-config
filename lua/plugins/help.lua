@@ -1,0 +1,21 @@
+-- ╭────────────╮
+-- │ Usage help │
+-- ╰────────────╯
+return {
+    {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+        opts = function()
+            return require("plugins.opts.which-key")
+        end,
+        keys = {
+            {
+                "<leader>?",
+                function()
+                    require("which-key").show({ global = false })
+                end,
+                desc = "Buffer Local Keymaps (which-key)",
+            },
+        },
+    }
+}
