@@ -14,65 +14,68 @@ return {
     },
     -- To test if TreeSitter is working
     -- "nvim-treesitter/playground",
-    {
-        "nvim-treesitter/nvim-treesitter-context",
-        opts = function()
-            return require("plugins.opts.treesitterContext")
-        end,
-    },
+    -- {
+    --     "nvim-treesitter/nvim-treesitter-context",
+    --     opts = function()
+    --         return require("plugins.opts.treesitterContext")
+    --     end,
+    -- },
 
     -- │ Completion │
     {
-        "hrsh7th/nvim-cmp",
-        enabled = true,
-        dependencies = {
-            "hrsh7th/cmp-emoji",
-            "hrsh7th/cmp-buffer",
-            "hrsh7th/cmp-emoji",
-            "hrsh7th/cmp-nvim-lsp",
-            "hrsh7th/cmp-cmdline",
-            "hrsh7th/cmp-path",
+      'saghen/blink.cmp',
+      -- dependencies = { 'rafamadriz/friendly-snippets' },
+      version = '1.*',
+      opts = {
+        -- All presets have the following mappings:
+        -- C-space: Open menu or open docs if already open
+        -- C-n/C-p or Up/Down: Select next/previous item
+        -- C-e: Hide menu
+        -- C-k: Toggle signature help (if signature.enabled = true)
+        keymap = { preset = 'default' },
+        appearance = {
+          nerd_font_variant = 'mono'
         },
-        opts = function()
-            return require("plugins.opts.cmp")
-        end,
-    },
-
-    {
-        "L3MON4D3/LuaSnip",
-        build = "make install_jsregexp",
-        dependencies = { "rafamadriz/friendly-snippets" },
-    },
-    {
-        "saadparwaiz1/cmp_luasnip",
-        dependencies = {
-            "hrsh7th/nvim-cmp",
+        -- (Default) Only show the documentation popup when manually triggered
+        completion = { documentation = { auto_show = false } },
+        -- Default list of enabled providers defined so that you can extend it
+        -- elsewhere in your config, without redefining it, due to `opts_extend`
+        sources = {
+          default = { 'lsp', 'path', 'snippets', 'buffer' },
         },
+        fuzzy = { implementation = "prefer_rust_with_warning" }
+      },
+      opts_extend = { "sources.default" }
     },
-
-    -- │ Auto close │
-    {
-        "m4xshen/autoclose.nvim",
-    },
-
-    {
-        "windwp/nvim-ts-autotag",
-        config = function(_, opts)
-            require('nvim-ts-autotag').setup({
-              opts = {
-                enable_close = true, -- Auto close tags
-                enable_rename = true, -- Auto rename pairs of tags
-                enable_close_on_slash = false -- Auto close on trailing </
-              },
-              per_filetype = {
-                ["html"] = {
-                  enable_close = true
-                }
-              }
-            })
-        end,
-    },
-
+    -- {
+    --     "L3MON4D3/LuaSnip",
+    --     build = "make install_jsregexp",
+    --     dependencies = { "rafamadriz/friendly-snippets" },
+    -- },
+    --
+    -- -- │ Auto close │
+    -- {
+    --     "m4xshen/autoclose.nvim",
+    -- },
+    --
+    -- {
+    --     "windwp/nvim-ts-autotag",
+    --     config = function(_, opts)
+    --         require('nvim-ts-autotag').setup({
+    --           opts = {
+    --             enable_close = true, -- Auto close tags
+    --             enable_rename = true, -- Auto rename pairs of tags
+    --             enable_close_on_slash = false -- Auto close on trailing </
+    --           },
+    --           per_filetype = {
+    --             ["html"] = {
+    --               enable_close = true
+    --             }
+    --           }
+    --         })
+    --     end,
+    -- },
+    --
     -- │ Diagnostics │
     {
         "folke/trouble.nvim",

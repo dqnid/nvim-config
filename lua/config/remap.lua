@@ -2,11 +2,9 @@ vim.g.mapleader = " "
 local map = vim.keymap.set
 
 ---- Bufferline ----
-
 map("n", "bg", "<CMD>BufferLinePick<CR>")
 map("n", "<leader>bpx", "<CMD>BufferLinePickClose<CR>")
-map("n", "<leader>box", "<CMD>BufferLineCloseOthers<CR>")
-map("n", "<Tab>", "<CMD>BufferLineCycleNext<CR>")
+map("n", "<leader>box", "<CMD>BufferLineCloseOthers<CR>") map("n", "<Tab>", "<CMD>BufferLineCycleNext<CR>")
 map("n", "<S-Tab>", "<CMD>BufferLineCyclePrev<CR>")
 map("n", "bsd", "<CMD>BufferLineSortByDirectory<CR>")
 map("n", "bse", "<CMD>BufferLineSortByExtension<CR>")
@@ -18,17 +16,14 @@ map("n", "<S-l>", "<cmd>BufferLineMoveNext<cr>", { desc = "Move buffer to right"
 map("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
 map("n", "]b", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 map("n", "<leader>bd", function()
-    Snacks.bufdelete()
-end, { desc = "Delete Buffer" })
-map("n", "<leader>x", function()
-    Snacks.bufdelete()
+    -- Snacks.bufdelete()
 end, { desc = "Delete Buffer" })
 -- cant have C-w to delete buffer since in being used to navigate windows
 -- map("n", "<C-w>", function()
 --     Snacks.bufdelete()
 -- end, { desc = "Go to Left Window", remap = true })
 map("n", "<C-x>", function()
-    Snacks.bufdelete()
+    -- Snacks.bufdelete()
 end, { desc = "Delete Buffer" })
 map("n", "<leader>bD", "<cmd>:bd<cr>", { desc = "Delete Buffer and Window" })
 -- tabpages

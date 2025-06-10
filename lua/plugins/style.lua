@@ -11,6 +11,7 @@ return {
             variant = "darker", -- dark, light, darker
         },
     },
+    { "echasnovski/mini.icons" },
     {
         "folke/noice.nvim",
         event = "VeryLazy",

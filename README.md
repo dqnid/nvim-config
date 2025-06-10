@@ -9,6 +9,7 @@
 This list is arbitrary and will depend on the current state of the lsp folder:
 
 - `# pacman -S lua-language-server bash-language-server typescript-language-server vscode-html-language-server vscode-css-language-server pyright-langserver gopls astro-ls jdtls rust-analyzer solargraph vue-language-server vscode-json-languageserver`
+- `$ yay -S jdtls ruby-solargraph`
 - `# npm i -g emmet-language-server emmet-ls @astrojs/language-server`
 
 ## Relevant docs
