@@ -20,11 +20,10 @@ local config = {
         ["_"] = { "trim_whitespace" }, -- run only on filetypes without formater
         -- ["*"] = { "trim_whitespace" }, -- run in all filetypes
     },
-    -- Managed by lazyvim
-    -- format_on_save = {
-    --     timeout_ms = 500,
-    --     lsp_format = "fallback",
-    -- },
+    format_on_save = {
+        timeout_ms = 500,
+        lsp_format = "fallback",
+    },
     -- Customize formatters
     formatters = {
         shfmt = {
