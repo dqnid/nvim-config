@@ -76,7 +76,6 @@ local config = {
                 },
                 {
                     name = "Shells",
-                    icon = " ",
                     highlight = { undercurl = false, sp = "grey" },
                     auto_close = false,
                     matcher = function(buf)
