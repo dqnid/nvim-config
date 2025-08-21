@@ -11,9 +11,6 @@ return {
         end,
     },
 
-    -- Separate buffers in tabs
-    { "tiagovla/scope.nvim", config = true },
-
     {
         "nvim-lualine/lualine.nvim",
         event = "VeryLazy",

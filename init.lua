@@ -20,7 +20,7 @@ vim.cmd("set shiftwidth=4")
 vim.cmd("set expandtab")
 vim.cmd("set wrap")
 vim.lsp.inlay_hint.enable(false)
-vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 -- ╭─────────────╮
 -- │ Colorscheme │
