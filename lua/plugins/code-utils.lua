@@ -58,4 +58,12 @@ return {
         "folke/trouble.nvim",
         opts = { use_diagnostic_signs = true },
     },
+
+    {
+        "folke/todo-comments.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        opts = function()
+            return require("plugins.opts.todocomments")
+        end,
+    }
 }
