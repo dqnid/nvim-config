@@ -3,12 +3,11 @@
 -- ╰─────────╯
 return {
     {
-        -- "dqnid/plain-colors.nvim",
-        -- dir = "~/Documents/Proyectos/neovim-theme",
-        dir = "~/Documents/Code/plain-colors.nvim",
+        -- dir = "~/Documents/Code/plain-colors.nvim",
+        'rose-pine/neovim',
         name = "rose-pine",
         opts = {
-            variant = "darker", -- dark, light, darker
+            variant = "dawn", -- dark, light, darker
         },
     },
     { "echasnovski/mini.icons" },
