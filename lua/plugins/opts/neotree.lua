@@ -3,17 +3,31 @@ local config = {
     popup_border_style = "rounded",
     enable_git_status = true,
     enable_diagnostics = true,
-    open_files_do_not_replace_types = { "terminal", "trouble", "qf" }, -- when opening files, do not use windows containing these filetypes or buftypes
-    sort_case_insensitive = false,                                     -- used when sorting files and directories in the tree
+    open_files_do_not_replace_types = { "trouble", "qf" }, -- when opening files, do not use windows containing these filetypes or buftypes: "terminal" is an option
+    sort_case_insensitive = false,                         -- used when sorting files and directories in the tree
     sort_function = nil,
     follow_current_file = { enabled = true },
     source_selector = {
-        winbar = true,
+        winbar = false,
         statusline = false,
     },
     default_component_configs = {
         container = {
             enable_character_fade = true,
+        },
+        diagnostics = {
+            symbols = {
+                hint = "H",
+                info = "I",
+                warn = "!",
+                error = "X",
+            },
+            highlights = {
+                hint = "DiagnosticSignHint",
+                info = "DiagnosticSignInfo",
+                warn = "DiagnosticSignWarn",
+                error = "DiagnosticSignError",
+            },
         },
         indent = {
             indent_size = 2,
@@ -143,12 +157,13 @@ local config = {
             ["q"] = "close_window",
             ["R"] = "refresh",
             ["?"] = "show_help",
-            ["<"] = "prev_source",
-            [">"] = "next_source",
+            ["<S-Tab>"] = "prev_source",
+            ["<Tab>"] = "next_source",
             ["i"] = "show_file_details",
         },
     },
     nesting_rules = {},
+    document_symbols = {},
     filesystem = {
         filtered_items = {
             visible = false, -- when true, they will just be displayed differently than normal items
@@ -221,11 +236,10 @@ local config = {
     },
     buffers = {
         follow_current_file = {
-            enabled = true,          -- This will find and focus the file in the active buffer every time
-            --              -- the current file is changed while the tree is open.
-            leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
+            enabled = true,         -- This will find and focus the file in the active buffer every time
+            leave_dirs_open = true, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
         },
-        group_empty_dirs = true,     -- when true, empty folders will be grouped together
+        group_empty_dirs = true,    -- when true, empty folders will be grouped together
         show_unloaded = true,
         window = {
             mappings = {

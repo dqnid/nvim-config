@@ -37,7 +37,7 @@ vim.cmd("set clipboard=unnamedplus")
 -- ╰───────╯
 vim.opt.fillchars = {
     horiz = "━",
-    vert = "▏",
+    vert = "·",
     stl = " ",
     eob = " ",
 }
@@ -46,3 +46,12 @@ vim.opt.listchars = {
     trail = " ",
     nbsp = "+",
 }
+
+vim.fn.sign_define("DiagnosticSignError",
+    { text = " ", texthl = "DiagnosticSignError" })
+vim.fn.sign_define("DiagnosticSignWarn",
+    { text = " ", texthl = "DiagnosticSignWarn" })
+vim.fn.sign_define("DiagnosticSignInfo",
+    { text = " ", texthl = "DiagnosticSignInfo" })
+vim.fn.sign_define("DiagnosticSignHint",
+    { text = "󰌵", texthl = "DiagnosticSignHint" })

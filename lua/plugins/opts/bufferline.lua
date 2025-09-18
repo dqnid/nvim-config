@@ -45,7 +45,7 @@ local config = {
                 filetype = "neo-tree",
                 text = "",
                 highlight = "Directory",
-                separator = "", -- use a "true" to enable the default, or set your own character
+                separator = "·", -- use a "true" to enable the default, or set your own character
             },
         },
         groups = {
