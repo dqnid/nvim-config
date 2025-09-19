@@ -13,6 +13,13 @@ return {
 		end,
 	},
 
+	{
+		"nvim-treesitter/nvim-treesitter-context",
+		opts = function()
+			return require("plugins.opts.treesitterContext")
+		end,
+	},
+
 	-- │ Completion │
 	{
 		"saghen/blink.cmp",
