@@ -9,7 +9,7 @@ require("config")
 -- ╭─────────╮
 -- │ Generic │
 -- ╰─────────╯
-vim.cmd("set rnu")
+vim.cmd("set nu rnu")
 vim.cmd("set textwidth=0")
 vim.cmd("set wrapmargin=0")
 vim.cmd("set linebreak")
@@ -37,7 +37,7 @@ vim.cmd("set clipboard=unnamedplus")
 -- ╰───────╯
 vim.opt.fillchars = {
     horiz = "━",
-    vert = "·",
+    vert = " ",
     stl = " ",
     eob = " ",
 }
