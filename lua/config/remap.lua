@@ -17,10 +17,10 @@ map("n", "<S-l>", "<cmd>BufferLineMoveNext<cr>", { desc = "Move buffer to right"
 map("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
 map("n", "]b", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 map("n", "<leader>bd", function()
-    Snacks.bufdelete()
+	Snacks.bufdelete()
 end, { desc = "Delete Buffer" })
 map("n", "<leader>x", function()
-    Snacks.bufdelete()
+	Snacks.bufdelete()
 end, { desc = "Delete Buffer" })
 
 -- tabpages
@@ -34,7 +34,18 @@ map("n", "<leader>nt", "<cmd>:tabnew<cr>", { desc = "Create new tabpage" })
 map("n", "<leader>tc", "<cmd>TSContextToggle<CR>", { desc = "Toggle treesitter context" })
 
 -- Regex search and replace
-map("n", "<leader>fs", "<cmd>GrugFar<CR>", { desc = "Search all with replace option" })
+map("n", "<leader>S", '<cmd>lua require("spectre").toggle()<CR>', {
+	desc = "Toggle Spectre",
+})
+map("n", "<leader>sw", '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', {
+	desc = "Search current word",
+})
+map("v", "<leader>sw", '<esc><cmd>lua require("spectre").open_visual()<CR>', {
+	desc = "Search current word",
+})
+map("n", "<leader>sp", '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', {
+	desc = "Search on current file",
+})
 
 -- Blueprints
 map("n", "<leader>ct", "<cmd>lua require('blueprints').createFromTemplateTelescope()<CR>", { desc = "Nvim blueprints" })
@@ -52,28 +63,28 @@ map("n", "<leader>gs", "<cmd>Telescope git_status <CR>", { desc = "Git status" }
 
 -- lazygit
 map("n", "<leader>gg", function()
-    Snacks.lazygit({ cwd = LazyVim.root.git() })
+	Snacks.lazygit({ cwd = LazyVim.root.git() })
 end, { desc = "Lazygit (Root Dir)" })
 map("n", "<leader>gG", function()
-    Snacks.lazygit()
+	Snacks.lazygit()
 end, { desc = "Lazygit (cwd)" })
 map("n", "<leader>gb", function()
-    Snacks.lazygit.blame_line()
+	Snacks.lazygit.blame_line()
 end, { desc = "Git Blame Line" })
 map("n", "<leader>gB", function()
-    Snacks.lazygit.browse()
+	Snacks.lazygit.browse()
 end, { desc = "Git Browse" })
 
 map("n", "<leader>gf", function()
-    local git_path = vim.api.nvim_buf_get_name(0)
-    Snacks.lazygit({ args = { "-f", vim.trim(git_path) } })
+	local git_path = vim.api.nvim_buf_get_name(0)
+	Snacks.lazygit({ args = { "-f", vim.trim(git_path) } })
 end, { desc = "Lazygit Current File History" })
 
 map("n", "<leader>gl", function()
-    Snacks.lazygit({ args = { "log" }, cwd = LazyVim.root.git() })
+	Snacks.lazygit({ args = { "log" }, cwd = LazyVim.root.git() })
 end, { desc = "Lazygit Log" })
 map("n", "<leader>gL", function()
-    Snacks.lazygit({ args = { "log" } })
+	Snacks.lazygit({ args = { "log" } })
 end, { desc = "Lazygit Log (cwd)" })
 
 ---------------------------------------------------------------------------
@@ -84,74 +95,74 @@ map("n", "<leader>e", "<cmd>Neotree focus<cr>", { desc = "Focus neotree" })
 
 -- LSP
 map("n", "gD", function()
-    vim.lsp.buf.declaration()
+	vim.lsp.buf.declaration()
 end, { desc = "LSP declaration" })
 map("n", "gd", function()
-    vim.lsp.buf.definition()
+	vim.lsp.buf.definition()
 end, { desc = "LSP definition" })
 map("n", "gr", function()
-    vim.lsp.buf.references()
+	vim.lsp.buf.references()
 end, { desc = "LSP references" })
 map("n", "K", function()
-    vim.lsp.buf.hover()
+	vim.lsp.buf.hover()
 end, { desc = "LSP hover" })
 map("n", "gi", function()
-    vim.lsp.buf.implementation()
+	vim.lsp.buf.implementation()
 end, { desc = "LSP implementation" })
 map("n", "<leader>ls", function()
-    vim.lsp.buf.signature_help()
+	vim.lsp.buf.signature_help()
 end, { desc = "LSP signature help" })
 map("n", "<leader>lf", function()
-    vim.diagnostic.open_float({ border = "rounded" })
+	vim.diagnostic.open_float({ border = "rounded" })
 end, { desc = "Floating diagnostics" })
 map("n", "<leader>D", function()
-    vim.lsp.buf.type_definition()
+	vim.lsp.buf.type_definition()
 end, { desc = "LSP type definition" })
 map("n", "<leader>ca", function()
-    vim.lsp.buf.code_action()
+	vim.lsp.buf.code_action()
 end, { desc = "LSP code actions" })
 map("n", "[d", function()
-    vim.diagnostic.goto_prev({ float = { border = "rounded" } })
+	vim.diagnostic.goto_prev({ float = { border = "rounded" } })
 end, { desc = "Goto prev diagnostic" })
 map("n", "]d", function()
-    vim.diagnostic.goto_next({ float = { border = "rounded" } })
+	vim.diagnostic.goto_next({ float = { border = "rounded" } })
 end, { desc = "Goto next diagnostic" })
 map("v", "<leader>ca", function()
-    vim.lsp.buf.code_action()
+	vim.lsp.buf.code_action()
 end, { desc = "LSP code action" })
 map("n", "<leader>r", function()
-    -- when rename opens the prompt, this autocommand will trigger
-    -- it will "press" CTRL-F to enter the command-line window `:h cmdwin`
-    -- in this window I can use normal mode keybindings
-    local cmdId
-    cmdId = vim.api.nvim_create_autocmd({ "CmdlineEnter" }, {
-        callback = function()
-            local key = vim.api.nvim_replace_termcodes("<C-f>", true, false, true)
-            vim.api.nvim_feedkeys(key, "c", false)
-            vim.api.nvim_feedkeys("0", "n", false)
-            -- autocmd was triggered and so we can remove the ID and return true to delete the autocmd
-            cmdId = nil
-            return true
-        end,
-    })
-    vim.lsp.buf.rename()
-    -- if LPS couldn't trigger rename on the symbol, clear the autocmd
-    vim.defer_fn(function()
-        -- the cmdId is not nil only if the LSP failed to rename
-        if cmdId then
-            vim.api.nvim_del_autocmd(cmdId)
-        end
-    end, 500)
+	-- when rename opens the prompt, this autocommand will trigger
+	-- it will "press" CTRL-F to enter the command-line window `:h cmdwin`
+	-- in this window I can use normal mode keybindings
+	local cmdId
+	cmdId = vim.api.nvim_create_autocmd({ "CmdlineEnter" }, {
+		callback = function()
+			local key = vim.api.nvim_replace_termcodes("<C-f>", true, false, true)
+			vim.api.nvim_feedkeys(key, "c", false)
+			vim.api.nvim_feedkeys("0", "n", false)
+			-- autocmd was triggered and so we can remove the ID and return true to delete the autocmd
+			cmdId = nil
+			return true
+		end,
+	})
+	vim.lsp.buf.rename()
+	-- if LPS couldn't trigger rename on the symbol, clear the autocmd
+	vim.defer_fn(function()
+		-- the cmdId is not nil only if the LSP failed to rename
+		if cmdId then
+			vim.api.nvim_del_autocmd(cmdId)
+		end
+	end, 500)
 end, { desc = "Rename symbol" })
 
 map("n", "<leader>wa", function()
-    vim.lsp.buf.add_workspace_folder()
+	vim.lsp.buf.add_workspace_folder()
 end, { desc = "Add workspace folder" })
 map("n", "<leader>wr", function()
-    vim.lsp.buf.remove_workspace_folder()
+	vim.lsp.buf.remove_workspace_folder()
 end, { desc = "Remove workspace folder" })
 map("n", "<leader>wl", function()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+	print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 end, { desc = "List workspace folders" })
 
 ---- Debugging with dap ----
@@ -203,10 +214,10 @@ map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and Clear hlsea
 -- Clear search, diff update and redraw
 -- taken from runtime/lua/_editor.lua
 map(
-    "n",
-    "<leader>ur",
-    "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>",
-    { desc = "Redraw / Clear hlsearch / Diff Update" }
+	"n",
+	"<leader>ur",
+	"<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>",
+	{ desc = "Redraw / Clear hlsearch / Diff Update" }
 )
 
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
@@ -237,16 +248,16 @@ map("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })
 
 -- formatting
 map({ "n", "v" }, "<leader>cf", function()
-    require("conform").format()
+	require("conform").format()
 end, { desc = "Format" })
 
 -- diagnostic
 local diagnostic_goto = function(next, severity)
-    local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
-    severity = severity and vim.diagnostic.severity[severity] or nil
-    return function()
-        go({ severity = severity })
-    end
+	local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+	severity = severity and vim.diagnostic.severity[severity] or nil
+	return function()
+		go({ severity = severity })
+	end
 end
 map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
 map("n", "]d", diagnostic_goto(true), { desc = "Next Diagnostic" })
@@ -259,44 +270,44 @@ map("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
 ---- Toggle options ----
 
 map("n", "<leader>uf", function()
-    LazyVim.format.toggle()
+	LazyVim.format.toggle()
 end, { desc = "Toggle Auto Format (Global)" })
 map("n", "<leader>uF", function()
-    LazyVim.format.toggle(true)
+	LazyVim.format.toggle(true)
 end, { desc = "Toggle Auto Format (Buffer)" })
 map("n", "<leader>us", function()
-    LazyVim.toggle("spell")
+	LazyVim.toggle("spell")
 end, { desc = "Toggle Spelling" })
 map("n", "<leader>uw", function()
-    LazyVim.toggle("wrap")
+	LazyVim.toggle("wrap")
 end, { desc = "Toggle Word Wrap" })
 map("n", "<leader>uL", function()
-    LazyVim.toggle("relativenumber")
+	LazyVim.toggle("relativenumber")
 end, { desc = "Toggle Relative Line Numbers" })
 map("n", "<leader>ul", function()
-    LazyVim.toggle.number()
+	LazyVim.toggle.number()
 end, { desc = "Toggle Line Numbers" })
 map("n", "<leader>ud", function()
-    LazyVim.toggle.diagnostics()
+	LazyVim.toggle.diagnostics()
 end, { desc = "Toggle Diagnostics" })
 local conceallevel = vim.o.conceallevel > 0 and vim.o.conceallevel or 3
 map("n", "<leader>uc", function()
-    LazyVim.toggle("conceallevel", false, { 0, conceallevel })
+	LazyVim.toggle("conceallevel", false, { 0, conceallevel })
 end, { desc = "Toggle Conceal" })
 if vim.lsp.buf.inlay_hint or vim.lsp.inlay_hint then
-    map("n", "<leader>uh", function()
-        LazyVim.toggle.inlay_hints()
-    end, { desc = "Toggle Inlay Hints" })
+	map("n", "<leader>uh", function()
+		LazyVim.toggle.inlay_hints()
+	end, { desc = "Toggle Inlay Hints" })
 end
 map("n", "<leader>uT", function()
-    if vim.b.ts_highlight then
-        vim.treesitter.stop()
-    else
-        vim.treesitter.start()
-    end
+	if vim.b.ts_highlight then
+		vim.treesitter.stop()
+	else
+		vim.treesitter.start()
+	end
 end, { desc = "Toggle Treesitter Highlight" })
 map("n", "<leader>ub", function()
-    LazyVim.toggle("background", false, { "light", "dark" })
+	LazyVim.toggle("background", false, { "light", "dark" })
 end, { desc = "Toggle Background" })
 -- aerial
 map("n", "<leader>ua", "<cmd>AerialToggle<cr>", { desc = "Toggle aerial view" })
@@ -331,7 +342,7 @@ map("n", "<leader>w|", "<C-W>v", { desc = "Split Window Right", remap = true })
 map("n", "<leader>-", "<C-W>s", { desc = "Split Window Below", remap = true })
 map("n", "<leader>|", "<C-W>v", { desc = "Split Window Right", remap = true })
 map("n", "<leader>wm", function()
-    LazyVim.toggle.maximize()
+	LazyVim.toggle.maximize()
 end, { desc = "Maximize Toggle" })
 
 -- Move to window using the <ctrl> hjkl keys
