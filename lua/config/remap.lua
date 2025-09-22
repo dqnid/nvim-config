@@ -68,9 +68,6 @@ end, { desc = "Lazygit (Root Dir)" })
 map("n", "<leader>gG", function()
 	Snacks.lazygit()
 end, { desc = "Lazygit (cwd)" })
-map("n", "<leader>gb", function()
-	Snacks.lazygit.blame_line()
-end, { desc = "Git Blame Line" })
 map("n", "<leader>gB", function()
 	Snacks.lazygit.browse()
 end, { desc = "Git Browse" })
@@ -269,6 +266,9 @@ map("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
 
 ---- Toggle options ----
 
+map("n", "<leader>um", function()
+	require("monkey-alert").enable() -- does not toggle :O
+end, { desc = "Toggle monkey alert" })
 map("n", "<leader>uf", function()
 	LazyVim.format.toggle()
 end, { desc = "Toggle Auto Format (Global)" })

@@ -58,16 +58,39 @@ return {
 	},
 
 	{
+		"petertriho/nvim-scrollbar",
+		opts = function()
+			return require("plugins.opts.scrollbar")
+		end,
+		config = function(_, opts)
+			require("scrollbar").setup(opts)
+		end,
+	},
+
+	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
 		opts = {},
 		init = function()
 			require("ibl").setup({
+				indent = {
+					-- highlight = { "hl-IblIndent" },
+					smart_indent_cap = true,
+					char = "▏",
+				},
 				whitespace = {
 					highlight = { "Whitespace", "NonText" },
 					remove_blankline_trail = true,
 				},
-				scope = { exclude = { language = { "lua", "css" } } },
+				scope = {
+					char = "⋅",
+					enabled = true,
+					show_start = true,
+					show_end = true,
+					highlight = { "Function", "Label" },
+					priority = 500,
+					exclude = { language = { "css" } },
+				},
 			})
 		end,
 	},

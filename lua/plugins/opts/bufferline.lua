@@ -45,7 +45,7 @@ local config = {
 				filetype = "neo-tree",
 				text = "",
 				highlight = "Directory",
-				separator = "", -- use a "true" to enable the default, or set your own character
+				separator = "│", -- use a "true" to enable the default, or set your own character
 			},
 		},
 		groups = {
@@ -55,7 +55,7 @@ local config = {
 			items = {
 				{
 					name = "Tests",
-					highlight = { underline = true, sp = "blue" },
+					highlight = { underline = false, sp = "blue" },
 					priority = 2,
 					-- icon = " ",
 					matcher = function(buf)
