@@ -31,7 +31,7 @@ local config = {
 		show_tab_indicators = true,
 		duplicates_across_groups = true, -- whether to consider duplicate paths in different groups as duplicates
 		persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
-		separator_style = { "▏", "" }, -- { "▏", "" } | "slant" | "slope" | "thick" | "thin" | { 'any', 'any' },
+		separator_style = { "▍", "" }, -- { "▏", "" } | "slant" | "slope" | "thick" | "thin" | { 'any', 'any' },
 		-- always_show_bufferline = false,
 		auto_toggle_bufferline = true,
 		show_close_icon = true,
@@ -43,9 +43,9 @@ local config = {
 		offsets = {
 			{
 				filetype = "neo-tree",
-				text = "",
+				text = "",
 				highlight = "Directory",
-				separator = "│", -- use a "true" to enable the default, or set your own character
+				separator = "▎", -- use a "true" to enable the default, or set your own character
 			},
 		},
 		groups = {
