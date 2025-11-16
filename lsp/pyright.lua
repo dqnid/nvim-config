@@ -1,5 +1,5 @@
 return {
-    cmd = { 'pyright-langserver', '--stdio' },
+    cmd = { 'pylsp' },
     filetypes = { 'python' },
-    root_markers = { 'setup.py', 'setup.cfg', 'requirements.txt', '.git' },
+    root_markers = { 'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt', '.git' },
 }
