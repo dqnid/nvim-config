@@ -17,7 +17,7 @@ vim.cmd("set linebreak")
 vim.cmd("set conceallevel=0") -- DONT hide characters in MD
 vim.cmd("set tabstop=4")
 vim.cmd("set shiftwidth=4")
-vim.cmd("set expandtab")
+vim.cmd("set noexpandtab") -- expandtab to use spaces instead of tabs
 vim.cmd("set wrap")
 vim.lsp.inlay_hint.enable(false)
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
@@ -25,7 +25,8 @@ vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,
 -- ╭─────────────╮
 -- │ Colorscheme │
 -- ╰─────────────╯
-vim.cmd("colorscheme rose-pine")
+vim.cmd("colorscheme gruvbox") -- rose-pine
+vim.o.background = "dark"      -- "dark" or "light"
 
 -- ╭───────────────────╮
 -- │ Default clipboard │
@@ -51,3 +52,5 @@ vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticS
 vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSignWarn" })
 vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticSignInfo" })
 vim.fn.sign_define("DiagnosticSignHint", { text = "󰌵", texthl = "DiagnosticSignHint" })
+
+vim.cmd("set noexpandtab") -- expandtab to use spaces instead of tabs
