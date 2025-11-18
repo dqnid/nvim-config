@@ -25,7 +25,7 @@ vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,
 -- ╭─────────────╮
 -- │ Colorscheme │
 -- ╰─────────────╯
-vim.cmd("colorscheme gruvbox") -- rose-pine
+vim.cmd("colorscheme gruvbox") -- rose-pine, gruvbox
 vim.o.background = "dark"      -- "dark" or "light"
 
 -- ╭───────────────────╮
@@ -52,5 +52,3 @@ vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticS
 vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSignWarn" })
 vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticSignInfo" })
 vim.fn.sign_define("DiagnosticSignHint", { text = "󰌵", texthl = "DiagnosticSignHint" })
-
-vim.cmd("set noexpandtab") -- expandtab to use spaces instead of tabs
