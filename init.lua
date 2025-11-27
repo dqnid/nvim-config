@@ -25,8 +25,8 @@ vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,
 -- ╭─────────────╮
 -- │ Colorscheme │
 -- ╰─────────────╯
-vim.cmd("colorscheme gruvbox") -- rose-pine, gruvbox
-vim.o.background = "dark"      -- "dark" or "light"
+vim.cmd("colorscheme rose-pine") -- rose-pine, gruvbox
+vim.o.background = "dark"        -- "dark" or "light"
 
 -- ╭───────────────────╮
 -- │ Default clipboard │

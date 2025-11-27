@@ -55,17 +55,19 @@ local config = {
 			items = {
 				{
 					name = "Tests",
-					highlight = { underline = false, sp = "blue" },
+					-- icon = "󰙨 ",
+					highlight = { underline = false },
 					priority = 2,
-					-- icon = " ",
 					matcher = function(buf)
-						return buf.path:match("%_test") or buf.path:match("%_spec")
+						return buf.path:match("%.test") or buf.path:match("%_test") or buf.path:match("%_spec")
 					end,
 				},
 				{
 					name = "Docs",
 					-- icon = "󰈙 ",
-					highlight = { undercurl = false, sp = "green" },
+					priority = 3,
+					-- highlight = { undercurl = false, sp = "grey" },
+					highlight = { undercurl = false },
 					auto_close = false,
 					matcher = function(buf)
 						return buf.path:match("%.md") or buf.path:match("%.txt")
@@ -76,8 +78,10 @@ local config = {
 				},
 				{
 					name = "Shells",
-					highlight = { undercurl = false, sp = "grey" },
+					-- icon = " ",
+					highlight = { undercurl = false },
 					auto_close = false,
+					priority = 4,
 					matcher = function(buf)
 						return buf.path:match("zsh")
 					end,
@@ -86,9 +90,10 @@ local config = {
 					},
 				},
 				{
-					name = "Docker",
-					highlight = { undercurl = false, sp = "blue" },
+					name = "Container",
+					highlight = { undercurl = false },
 					auto_close = false,
+					-- icon = " ",
 					matcher = function(buf)
 						return buf.path:match("dockerfile")
 							or buf.path:match("DOCKERFILE")

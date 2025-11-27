@@ -18,6 +18,10 @@ local config = {
 			words = { enabled = true },
 		},
 	},
+	{
+		'stevearc/overseer.nvim',
+		opts = {},
+	}
 }
 
 return config
